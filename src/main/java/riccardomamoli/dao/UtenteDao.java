@@ -16,7 +16,7 @@ public class UtenteDao{
         tx.begin();
         em.persist(utente);
         tx.commit();
-        System.out.println("l'utente " + utente.getNome() + utente.getCognome() + "è stato aggiunto");
+        System.out.println("L'utente " + utente.getNome() + " " + utente.getCognome() + " è stato aggiunto.");
     }
     public void removeUtente(Utente utente) {
         EntityTransaction tx = em.getTransaction();

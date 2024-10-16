@@ -30,11 +30,16 @@ public class TrattaDao {
         tx.commit();
         System.out.println("La tratta " + tratta.getId_tratta() + " con partenza da " + tratta.getZonaPartenza() + " e capolinea " + tratta.getCapolinea() + " è stata eliminata");
     }
+
+
     public Tratta findById(long id) {
         Tratta trattaTrovata = em.find(Tratta.class, id);
         return trattaTrovata;
     }
+
+
     public List<Tratta> findAll() {
+
         TypedQuery<Tratta> query = em.createQuery("SELECT tr FROM Tratta tr", Tratta.class);
         List<Tratta> risultati = query.getResultList();
 
@@ -44,15 +49,14 @@ public class TrattaDao {
 
             for (int i = 0; i < risultati.size(); i++) {
                Tratta tr= risultati.get(i);
+                System.out.println(" ");
                 System.out.println("Tratta numero " + (i + 1) + ":");
-
-
-
                 System.out.println("ID: " + tr.getId_tratta());
+                System.out.println(" ");
                 System.out.println("Stazione di partenza: " + tr.getZonaPartenza());
                 System.out.println("Stazione di arrivo: " + tr.getCapolinea());
                 System.out.println("Tempo di percorrenza previsto: " + tr.getTempoPrevisto() + " minuti");
-                System.out.println("----------------------------");
+                System.out.println(" ");
                 }
             }
         return risultati;

@@ -14,14 +14,12 @@ public class MezzoDao {
         this.em = em;
     }
 
-    // Aggiungi mezzo
     public void creazioneMezzo(Mezzo mezzo) {
         em.getTransaction().begin();
         em.persist(mezzo);
         em.getTransaction().commit();
     }
 
-    // Rimuovi un mezzo
     public void rimuovoMezzo(long id_mezzo) throws Exception {
         em.getTransaction().begin();
         Mezzo mezzo = em.find(Mezzo.class, id_mezzo);
@@ -33,7 +31,6 @@ public class MezzoDao {
         em.getTransaction().commit();
     }
 
-    // Cerca mezzo tramite id
     public Mezzo ricercoMezzo(long id_Mezzo) throws Exception {
         Mezzo trovato = em.find(Mezzo.class, id_Mezzo);
         if (trovato == null) {
@@ -42,7 +39,6 @@ public class MezzoDao {
         return trovato;
     }
 
-    // Ricerca stato Mezzo
     public void statoMezzo(long id) {
         Mezzo mezzo = em.find(Mezzo.class, id);
         if (mezzo != null) {
@@ -51,7 +47,6 @@ public class MezzoDao {
         }
     }
 
-    // Cambia lo stato del Mezzo
     public void cambiaStatoMezzo(long id) {
         Mezzo mezzo = em.find(Mezzo.class, id);
         if (mezzo != null) {
@@ -75,7 +70,6 @@ public class MezzoDao {
         }
     }
 
-    // Lista tratte per mezzo
     public List<TrattaPercorsa> trovaTrattePercorse(long id_mezzo) {
         String queryStr = "SELECT tp FROM TrattaPercorsa tp WHERE tp.mezzo.id = :mezzoId";
         TypedQuery<TrattaPercorsa> query = em.createQuery(queryStr, TrattaPercorsa.class);

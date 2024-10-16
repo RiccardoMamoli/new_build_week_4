@@ -96,11 +96,14 @@ public class PuntoVenditaDao {
         List<PuntoVendita> risultati = query.getResultList();
 
         if (risultati.isEmpty()) {
+            System.out.println(" ");
             System.out.println("Non ci sono punti vendita disponibili.");
+            System.out.println(" ");
         } else {
 
             for (int i = 0; i < risultati.size(); i++) {
                 PuntoVendita pv = risultati.get(i);
+                System.out.println("----------------------------");
                 System.out.println("Punto vendita numero " + (i + 1) + ":");
 
                 String tipologia = null;

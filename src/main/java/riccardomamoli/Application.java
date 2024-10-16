@@ -32,9 +32,9 @@ public class Application {
         Utente utente1 = new Utente("franco", "rossi", TipologiaUtente.UNDER25, LocalDate.of(2000, 10, 3));
         Utente utente2 = new Utente("mattia", "gonnola", TipologiaUtente.OVER60, LocalDate.of(1890, 2, 4));
         Utente utente3 = new Utente("giacomo", "guidotti", TipologiaUtente.UNDER18, LocalDate.of(2007, 11, 9));
-       // udao.addUtente(utente1);
+        // udao.addUtente(utente1);
         //udao.addUtente(utente2);
-        //1udao.addUtente(utente3);
+        //udao.addUtente(utente3);
 
         List<Abbonamento> abbonamenti = new ArrayList<Abbonamento>();
         List<Biglietto> biglietti = new ArrayList<Biglietto>();
@@ -43,7 +43,7 @@ public class Application {
         PuntoVendita p1 = new DistributoreAutomatico(abbonamenti, biglietti, true);
         PuntoVendita p2 = new DistributoreFisico(abbonamenti, biglietti);
        // pdao.addPuntoVendita(p1);
-        //pdao.addPuntoVendita(p2);
+        // pdao.addPuntoVendita(p2);
 
         LocalDate dataRilascio = LocalDate.now();
         LocalDate dataScadenza = dataRilascio.plusYears(1);
@@ -54,8 +54,8 @@ public class Application {
 
         Tratta tratta1 = new Tratta("a", "b", 40, 60, trattePercorse);
         Tratta tratta2 = new Tratta("c", "d", 20, 30, trattePercorse);
-        trdao.addTratta(tratta1);
-        trdao.addTratta(tratta2);
+       // trdao.addTratta(tratta1);
+       // trdao.addTratta(tratta2);
 
         Mezzo mezzo1 = new Autobus(70, StatoMezzo.IN_SERVIZIO, trattePercorse, stati);
         Scanner scanner = new Scanner(System.in);
@@ -63,37 +63,46 @@ public class Application {
 
         while (true) {
             try {
-                System.out.println("Che tipo di utente sei? (1: Utente, 2: Amministratore)");
+                System.out.println(" ");
+                System.out.println("Che tipo di utente sei?");
+                System.out.println(" ");
+                System.out.println("1) Utente");
+                System.out.println("2) Admin");
                 int scelta = scanner.nextInt();
                 scanner.nextLine();
 
                 switch (scelta) {
                     case 1:
+                        System.out.println(" ");
                         System.out.println("Benvenuto utente, seleziona il punto vendita:");
+                        System.out.println(" ");
                         pdao.findAll();
-
 
                         int sceltaPuntoVendita = scanner.nextInt();
                         scanner.nextLine();
 
                         if (sceltaPuntoVendita >= 1 && sceltaPuntoVendita <= pdao.findAll().size()) {
-                            PuntoVendita puntoVenditaSelezionato = pdao.findAll().get(sceltaPuntoVendita - 1);
-                            System.out.println("Hai selezionato: " + puntoVenditaSelezionato);
+                            // PuntoVendita puntoVenditaSelezionato = pdao.findAll().get(sceltaPuntoVendita - 1);
+                            System.out.println("Hai selezionato il punto vendita numero " + sceltaPuntoVendita);
+                            System.out.println(" ");
                             System.out.println("Cosa vuoi fare?");
-                            System.out.println("1: apri menù biglietto");
-                            System.out.println("2: apri menù abbonamento");
+                            System.out.println(" ");
+                            System.out.println("1: Apri Menù Biglietto");
+                            System.out.println("2: Apri Menù Abbonamento");
+                            System.out.println(" ");
                             int acquisto = scanner.nextInt();
                             scanner.nextLine();
 
                             switch (acquisto) {
                                 case 1:
                                     System.out.println("Hai scelto il menu biglietto. Quale tratta vorresti percorrere?");
+                                    System.out.println(" ");
                                    trdao.findAll();
                                    int sceltaTratta = scanner.nextInt();
                                    scanner.nextLine();
                                    if (sceltaTratta >= 1 && sceltaTratta <= trdao.findAll().size()) {
-                                       Tratta trattaCercata = trdao.findAll().get(sceltaTratta - 1);
-                                       System.out.println("Hai selezionato: " + trattaCercata);
+                                       Tratta trattaCercata = trdao.findAll().get(sceltaTratta);
+                                       // System.out.println("Hai selezionato: " + trattaCercata);
                                        System.out.println("il prezzo del biglietto per questa tratta è" + trattaCercata.getPrezzo());
                                        System.out.println("ecco il tuo biglietto");
                                        PuntoVendita puntoVenditaselezionato = pdao.findById(sceltaPuntoVendita);
