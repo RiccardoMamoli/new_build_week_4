@@ -41,5 +41,6 @@ public abstract class PuntoVendita {
     }
 
     public void setId(long id) {
+
     }
 }
