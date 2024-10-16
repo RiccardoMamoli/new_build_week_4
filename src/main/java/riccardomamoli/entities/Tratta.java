@@ -12,7 +12,7 @@ public class Tratta {
 
     private String zonaPartenza;
     private String capolinea;
-    private double tempoPrevisto;
+    private int tempoPrevisto;
     private double prezzo;
 
 
@@ -29,7 +29,7 @@ public class Tratta {
 
     }
 
-    public Tratta(String zonaPartenza, String capolinea, double tempoPrevisto, double prezzo, List<TrattaPercorsa> trattePercorse) {
+    public Tratta(String zonaPartenza, String capolinea, int tempoPrevisto, double prezzo, List<TrattaPercorsa> trattePercorse) {
         this.zonaPartenza = zonaPartenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
@@ -65,7 +65,7 @@ public class Tratta {
         return tempoPrevisto;
     }
 
-    public void setTempoPrevisto(double tempoPrevisto) {
+    public void setTempoPrevisto(int tempoPrevisto) {
         this.tempoPrevisto = tempoPrevisto;
     }
 

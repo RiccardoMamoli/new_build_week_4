@@ -24,9 +24,9 @@ public abstract class Mezzo {
     @OneToMany(mappedBy = "mezzo")
     private List<StatusMezzo> stati;
 
-    @OneToMany(mappedBy = "mezzo")
+   /* @OneToMany(mappedBy = "mezzo")
     private List<Biglietto> biglietti;
-
+*/
     public Mezzo() {
 
     }

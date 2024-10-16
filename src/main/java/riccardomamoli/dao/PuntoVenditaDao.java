@@ -87,7 +87,10 @@ public class PuntoVenditaDao {
         em.merge(distributore);
         em.getTransaction().commit();
     }
-
+    public PuntoVendita findById(long id) {
+        PuntoVendita puntoVenditaTrovato = em.find(PuntoVendita.class, id);
+        return puntoVenditaTrovato;
+    }
     public List<PuntoVendita> findAll() {
         TypedQuery<PuntoVendita> query = em.createQuery("SELECT pv FROM PuntoVendita pv", PuntoVendita.class);
         List<PuntoVendita> risultati = query.getResultList();
@@ -117,7 +120,6 @@ public class PuntoVenditaDao {
                     status = null;
 
                 }
-
                 System.out.println("ID: " + pv.getId());
                 System.out.println("Tipologia: " + tipologia);
                 if (status != null) {//questo per stampare lo status solo in DistributoriAutomatici
