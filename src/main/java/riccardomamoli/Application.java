@@ -90,14 +90,12 @@ public class Application {
                         break;
 
                     case 2:
-                        // L'utente è un amministratore
-                        System.out.println("Benvenuto amministratore!");
-                        // Logica per l'amministratore
-                        break;
+                        while(true){
+                            System.out.println("Benvenuto Amministratore, seleziona il l'operazione che vuoi eseguire:");
 
-                    default:
-                        System.out.println("Scelta non valida.");
-                        break;
+                        }
+
+
                 }
 
             } catch (Exception e) {

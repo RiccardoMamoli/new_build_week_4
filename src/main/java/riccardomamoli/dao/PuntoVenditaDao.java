@@ -19,6 +19,8 @@ public class PuntoVenditaDao {
 
     // Aggiungi distributore
     public void creazioneDistributore(PuntoVendita puntoVendita) {
+        System.out.println("Inserisci l'id per  il nuovo distributore:");
+        System.out.print("Id: ");
         em.getTransaction().begin();
         em.persist(puntoVendita);
         em.getTransaction().commit();
