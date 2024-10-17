@@ -16,4 +16,8 @@ public class DistributoreFisico extends PuntoVendita {
     public String toString() {
         return "DistributoreFisico{} " + super.toString();
     }
+
+    public Boolean isAttivo() {
+        return null;
+    }
 }

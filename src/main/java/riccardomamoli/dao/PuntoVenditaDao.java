@@ -74,9 +74,12 @@ public class PuntoVenditaDao {
     }
 
     // Ricerca attivo/nonAttivo Distributore
-    public boolean isActive(long id) {
+    public Boolean isActive(long id) {
         PuntoVendita distributore = em.find(PuntoVendita.class, id);
-        return distributore instanceof DistributoreAutomatico && ((DistributoreAutomatico) distributore).isAttivo();
+        if (distributore instanceof DistributoreAutomatico) {
+            return ((DistributoreAutomatico) distributore).isAttivo();
+        }
+        return null;
     }
 
 
