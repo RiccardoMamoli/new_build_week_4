@@ -50,7 +50,8 @@ public class Application {
         List<StatusMezzo> stati = new ArrayList<StatusMezzo>();
         PuntoVendita p1 = new DistributoreAutomatico(abbonamenti, biglietti, true);
         PuntoVendita p2 = new DistributoreFisico(abbonamenti, biglietti);
-        //pdao.addPuntoVendita(p1);
+        PuntoVendita p3 = new DistributoreAutomatico(abbonamenti, biglietti, false);
+        // pdao.addPuntoVendita(p3);
         // pdao.addPuntoVendita(p2);
 
         LocalDate dataRilascio = LocalDate.now();
@@ -158,24 +159,24 @@ public class Application {
                                     int sceltaTratta = scanner.nextInt();
                                     scanner.nextLine();
 
-                                    // Tratta trattaSelezionata = null;
+                                       Tratta trattaSelezionata = null;
                                     if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
                                         System.out.println("Hai selezionato la tratta numero " + sceltaTratta);
                                         System.out.println(" ");
-                                       // trattaSelezionata = listaTratte.get(sceltaTratta);
-                                       // System.out.println("Il prezzo del biglietto per questa tratta è " + trattaSelezionata.getPrezzo());
+                                        trattaSelezionata = listaTratte.get(sceltaTratta - 1);
+                                       System.out.println("Il prezzo del biglietto per questa tratta è " + trattaSelezionata.getPrezzo());
                                         System.out.println(" ");
 
-                                        PuntoVendita puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita);
-                                       // Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
-                                         // bdao.addBiglietto(biglietto1, trattaSelezionata);
+                                        PuntoVendita puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita - 1);
+                                        Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
+                                        bdao.addBiglietto(biglietto1, trattaSelezionata);
 
                                     }
 
                                     System.out.println(" ");
                                     System.out.println("A che ora vorresti partire?");
                                     System.out.println(" ");
-                                   //  tpdao.printFascePerTratta(trattaSelezionata);
+                                    tpdao.printFascePerTratta(trattaSelezionata);
 
 
                                     break;
