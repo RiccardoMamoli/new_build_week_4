@@ -37,7 +37,6 @@ public class TrattaDao {
         return trattaTrovata;
     }
 
-
     public List<Tratta> findAll() {
 
         TypedQuery<Tratta> query = em.createQuery("SELECT tr FROM Tratta tr", Tratta.class);

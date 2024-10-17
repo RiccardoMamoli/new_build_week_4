@@ -6,6 +6,7 @@ import riccardomamoli.entities.Biglietto;
 import riccardomamoli.entities.Tratta;
 
 public class BigliettoDao {
+
     private final EntityManager em;
 
     public BigliettoDao(EntityManager em) {
@@ -27,6 +28,4 @@ public class BigliettoDao {
         System.out.println("Emesso il: " + biglietto.getData_emissione());
         System.out.println(" ");
     }
-
-
 }
