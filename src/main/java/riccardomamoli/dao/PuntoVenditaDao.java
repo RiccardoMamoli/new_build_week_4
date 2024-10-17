@@ -95,6 +95,7 @@ public class PuntoVenditaDao {
     public List<PuntoVendita> findAll() {
         TypedQuery<PuntoVendita> query = em.createQuery("SELECT pv FROM PuntoVendita pv", PuntoVendita.class);
         List<PuntoVendita> risultati = query.getResultList();
+        System.out.println("Lunghezza pV = " + risultati.size());
 
         if (risultati.isEmpty()) {
             System.out.println("Non ci sono punti vendita disponibili.");

@@ -99,12 +99,12 @@ public class Application {
 
 
 
-        //tpdao.addTrattaPercorsa(FasciaOraria1);
-        //tpdao.addTrattaPercorsa(FasciaOraria2);
-        //tpdao.addTrattaPercorsa(FasciaOraria3);
-        //tpdao.addTrattaPercorsa(FasciaOraria4);
-        //tpdao.addTrattaPercorsa(FasciaOraria5);
-        //tpdao.addTrattaPercorsa(FasciaOraria6);
+        // tpdao.addTrattaPercorsa(FasciaOraria1);
+        // tpdao.addTrattaPercorsa(FasciaOraria2);
+        // tpdao.addTrattaPercorsa(FasciaOraria3);
+        // tpdao.addTrattaPercorsa(FasciaOraria4);
+        // tpdao.addTrattaPercorsa(FasciaOraria5);
+        // tpdao.addTrattaPercorsa(FasciaOraria6);
 
 
 
@@ -152,26 +152,30 @@ public class Application {
 
                                     System.out.println("Hai scelto il menu biglietto. Quale tratta vorresti percorrere?");
                                     System.out.println(" ");
+
                                     List<Tratta> listaTratte = trdao.findAll();
+
                                     int sceltaTratta = scanner.nextInt();
-                                   scanner.nextLine();
+                                    scanner.nextLine();
+
+                                    // Tratta trattaSelezionata = null;
                                     if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
-                                       System.out.println("Hai selezionato la tratta numero " + sceltaTratta);
-                                       System.out.println(" ");
-                                       Tratta trattaSelezionata = listaTratte.get(sceltaTratta);
-                                       System.out.println("Il prezzo del biglietto per questa tratta è " + trattaSelezionata.getPrezzo());
-                                       System.out.println(" ");
+                                        System.out.println("Hai selezionato la tratta numero " + sceltaTratta);
+                                        System.out.println(" ");
+                                       // trattaSelezionata = listaTratte.get(sceltaTratta);
+                                       // System.out.println("Il prezzo del biglietto per questa tratta è " + trattaSelezionata.getPrezzo());
+                                        System.out.println(" ");
 
-                                       PuntoVendita puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita);
-                                       Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(),false  );
-                                       bdao.addBiglietto(biglietto1, trattaSelezionata);
-                                   }
+                                        PuntoVendita puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita);
+                                       // Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
+                                         // bdao.addBiglietto(biglietto1, trattaSelezionata);
 
+                                    }
 
-                                    System.out.println("Quale mezzo vuoi prendere per la tratta selezionata?");
-                                    tpdao.printMezziPerTratta(sceltaTratta);
-
-
+                                    System.out.println(" ");
+                                    System.out.println("A che ora vorresti partire?");
+                                    System.out.println(" ");
+                                   //  tpdao.printFascePerTratta(trattaSelezionata);
 
 
                                     break;

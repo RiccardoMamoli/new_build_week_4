@@ -18,12 +18,14 @@ public class BigliettoDao {
         tx.begin();
         em.persist(biglietto);
         tx.commit();
+        System.out.println(" ");
         System.out.println("Ecco il tuo biglietto:");
         System.out.println(" ");
         System.out.println("Numero " + biglietto.getCodice_univoco_biglietto());
         System.out.println("Tratta " + tratta.getZonaPartenza() + " - " + tratta.getCapolinea());
         System.out.println("Costo: " + tratta.getPrezzo());
         System.out.println("Emesso il: " + biglietto.getData_emissione());
+        System.out.println(" ");
     }
 
 
