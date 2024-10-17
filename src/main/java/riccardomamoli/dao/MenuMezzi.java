@@ -13,9 +13,18 @@ public class MenuMezzi {
         MezzoDao mdao = new MezzoDao(em);
 
         while (true) {
-            System.out.println("Menu Mezzi: (1: Crea, 2: Elimina, 3: Ricerca dati mezzo, 4: Verifica stato mezzo, 5: Cambia stato mezzo, " +
-                    "6: Trova tutte le tratte di un mezzo, 7: Conteggio tratte per mezzo," +
-                    " 8: Calcola il tempo effettivo delle tratte, 9: Calcola il tempo medio effettivo  0: Torna indietro)");
+            System.out.println("Menu Mezzi:\n" +
+                    "1: Crea\n" +
+                    "2: Elimina\n" +
+                    "3: Ricerca dati mezzo\n" +
+                    "4: Verifica stato mezzo\n" +
+                    "5: Cambia stato mezzo\n" +
+                    "6: Trova tutte le tratte di un mezzo\n" +
+                    "7: Conteggio tratte per mezzo\n" +
+                    "8: Calcola il tempo effettivo delle tratte\n" +
+                    "9: Calcola il tempo medio effettivo\n" +
+                    "0: Torna indietro");
+
             int scelta = scanner.nextInt();
             scanner.nextLine();
 

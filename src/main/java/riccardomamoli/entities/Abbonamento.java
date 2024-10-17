@@ -91,6 +91,10 @@ public class Abbonamento {
     public void setTipologia_abbonamento(TipologiaAbbonamento tipologia_abbonamento) {
         this.tipologia_abbonamento = tipologia_abbonamento;
     }
+    public boolean isValido() {
+        // Controlla se la data di scadenza è dopo la data attuale
+        return LocalDate.now().isBefore(data_scadenza) || LocalDate.now().isEqual(data_scadenza);
+    }
 
     public double getPrezzo() {
         return prezzo;

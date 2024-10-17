@@ -7,6 +7,7 @@ import riccardomamoli.dao.*;
 import riccardomamoli.entities.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,16 +28,20 @@ public class Application {
 
         PuntoVenditaDao pdao = new PuntoVenditaDao(em);
         PuntoVendita p1 = new DistributoreAutomatico();
+        List<Abbonamento> abbStat= new ArrayList<>();
+        List<Biglietto> bigStat= new ArrayList<>();
 
         LocalDate dataRilascio = LocalDate.now();
         LocalDate dataScadenza = dataRilascio.plusYears(1);
-        AbbonamentoDao adao = new AbbonamentoDao(em);
+        BigliettoDao adao = new BigliettoDao(em);
         Abbonamento abb1 = new Abbonamento(p1, 243545, dataRilascio, dataScadenza, TipologiaAbbonamento.MENSILE, 30);
 
         TesseraDao tdao = new TesseraDao(em);
         Tessera tessera1 = new Tessera(utente1, abb1, "145sf346", dataRilascio, dataScadenza, true);
 
+
         Scanner scanner = new Scanner(System.in);
+
 
         try {
             while (true) {
@@ -114,7 +119,7 @@ public class Application {
 
     private static void menuAmministratore(Scanner scanner, EntityManager em) {
         while (true) {
-            System.out.println("Seleziona il menu: (1: Distributore, 2: Mezzi, 3: Utenti, 4: Biglietti/Abbonamenti, 5: Tratte, 0: Torna indietro)");
+            System.out.println("Seleziona il menu: (1: Distributore, 2: Mezzi, 3: Utenti, 4: Biglietti, 5: Abbonamenti, 6:Tratte  0: Torna indietro)");
             int scelta = scanner.nextInt();
             scanner.nextLine();
 
@@ -122,12 +127,19 @@ public class Application {
                 case 1:
                     MenuDistributore.gestisciMenu(scanner, em);
                     break;
-
+                case 2 :
+                    MenuMezzi.gestisciMenuMezzi(scanner,em);
+                case 3:
+                    MenuUtenti.gestisciMenuUtenti(scanner,em);
+                case 4:
+                    MenuBiglietti.gestisciMenuBuglietti(scanner,em);
+                case 5:
+                    MenuAbbonamento.gestisciMenuAbbonamenti(scanner, em);
                 case 0:
                     return;
 
                 default:
-                    MenuMezzi.gestisciMenuMezzi(scanner,em);
+
                   break;
             }
         }

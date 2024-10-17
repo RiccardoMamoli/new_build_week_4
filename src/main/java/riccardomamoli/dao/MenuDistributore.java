@@ -12,7 +12,13 @@ public class MenuDistributore {
         PuntoVenditaDao pdao = new PuntoVenditaDao(em);
 
         while (true) {
-            System.out.println("Menu Distributore: (1: Crea, 2: Elimina, 3: Consulta dati , 4 Verifica stato:, 5 Cambia lo stato: 0: Torna indietro)");
+            System.out.println("Menu Distributore:\n" +
+                    "1: Crea\n" +
+                    "2: Elimina\n" +
+                    "3: Consulta dati\n" +
+                    "4: Verifica stato\n" +
+                    "5: Cambia lo stato\n" +
+                    "0: Torna indietro");
             int scelta = scanner.nextInt();
             scanner.nextLine();
 
