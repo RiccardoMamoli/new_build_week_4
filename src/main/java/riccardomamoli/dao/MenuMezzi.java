@@ -13,7 +13,9 @@ public class MenuMezzi {
         MezzoDao mdao = new MezzoDao(em);
 
         while (true) {
-            System.out.println("Menu Mezzi: (1: Crea, 2: Elimina, 3: Ricerca dati mezzo, 4: Verifica stato mezzo, 5: Cambia stato mezzo, 6: Trova tutte le tratte di un mezzo, 7: Conteggio tratte per mezzo  0: Torna indietro)");
+            System.out.println("Menu Mezzi: (1: Crea, 2: Elimina, 3: Ricerca dati mezzo, 4: Verifica stato mezzo, 5: Cambia stato mezzo, " +
+                    "6: Trova tutte le tratte di un mezzo, 7: Conteggio tratte per mezzo," +
+                    " 8: Calcola il tempo effettivo delle tratte, 9: Calcola il tempo medio effettivo  0: Torna indietro)");
             int scelta = scanner.nextInt();
             scanner.nextLine();
 
@@ -180,6 +182,48 @@ public class MenuMezzi {
                     try {
                         long numeroTratte = mdao.countTratteInPeriod(idMezzoo);
                         System.out.println("Il numero di tratte percorse dal mezzo con ID " + idMezzoo + " è: " + numeroTratte);
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+                case 8:
+                    // Calcola il tempo effettivo delle tratte
+                    System.out.println("Inserisci l'ID del mezzo:");
+                    long idMez = scanner.nextLong();
+                    scanner.nextLine();
+
+                    System.out.println("Inserisci l'ID della tratta:");
+                    long idTratta = scanner.nextLong();
+                    scanner.nextLine();
+
+                    try {
+                        List<Double> tempiEffettivi = mdao.getTempiEffettivi(idMez, idTratta);
+
+                        if (tempiEffettivi != null && !tempiEffettivi.isEmpty()) {
+                            System.out.println("Tempi effettivi per la tratta con ID " + idTratta + " e mezzo con ID " + idMez + ":");
+                            for (Double tempo : tempiEffettivi) {
+                                System.out.println(tempo + " ore"); // Assumendo che il tempo sia in ore
+                            }
+                        } else {
+                            System.out.println("Nessun tempo effettivo trovato per la tratta con ID " + idTratta + " e mezzo con ID " + idMez);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+                case 9:
+                    // Calcola il tempo medio effettivo di percorrenza
+                    System.out.println("Inserisci l'ID del mezzo:");
+                    long idMezzooo = scanner.nextLong();
+                    scanner.nextLine();
+
+                    System.out.println("Inserisci l'ID della tratta:");
+                    long idTrattaa = scanner.nextLong();
+                    scanner.nextLine();
+
+                    try {
+                        double tempoMedio = mdao.calcolaTempoMedioEffettivo(idMezzooo, idTrattaa);
+                        System.out.println("Il tempo medio effettivo di percorrenza per la tratta con ID " + idTrattaa + " e mezzo con ID " + idMezzooo + " è: " + tempoMedio + " ore");
                     } catch (Exception e) {
                         System.out.println("Errore: " + e.getMessage());
                     }
