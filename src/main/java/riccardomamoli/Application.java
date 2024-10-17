@@ -29,6 +29,7 @@ public class Application {
         MezzoDao mdao = new MezzoDao(em);
         BigliettoDao bdao = new BigliettoDao(em);
         StatusMezzoDao sdao = new StatusMezzoDao(em);
+        TrattaPercorsaDao tpdao = new TrattaPercorsaDao(em);
 
 
         Utente utente1 = new Utente("franco", "rossi", TipologiaUtente.UNDER25, LocalDate.of(2000, 10, 3));
@@ -55,10 +56,8 @@ public class Application {
 
         Tessera tessera1 = new Tessera(utente1, abb1, "145sf346", dataRilascio, dataScadenza, true);
 
-        Tratta tratta1 = new Tratta("a", "b", 40, 60, trattePercorse);
-        Tratta tratta2 = new Tratta("c", "d", 20, 30, trattePercorse);
-       // trdao.addTratta(tratta1);
-       // trdao.addTratta(tratta2);
+
+
 
 
         Mezzo mezzo1 = new Autobus(70, StatoMezzo.IN_SERVIZIO);
@@ -80,6 +79,8 @@ public class Application {
         //sdao.addStatusMezzo(statusMezzo2);
         //sdao.addStatusMezzo(statusMezzo3);
         //sdao.addStatusMezzo(statusMezzo4);
+
+
 
 
 
