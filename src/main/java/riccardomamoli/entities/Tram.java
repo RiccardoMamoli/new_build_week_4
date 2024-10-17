@@ -13,8 +13,14 @@ public class Tram extends Mezzo {
         super(capienza, statoAttuale);
     }
 
+    public Tram(int capienza, StatoMezzo statoAttuale) {
+        super(capienza, statoAttuale);
+    }
+
+
     @Override
     public String toString() {
-        return "Tram{}";
+        return "Tram{" + super.toString() + "}";
+
     }
 }

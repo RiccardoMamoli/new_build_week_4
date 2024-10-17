@@ -22,7 +22,7 @@ public class Application {
         em.getTransaction().begin();
         em.getTransaction().commit();
 
-
+        // Creazione degli oggetti DAO e degli utenti
         UtenteDao udao = new UtenteDao(em);
         PuntoVenditaDao pdao = new PuntoVenditaDao(em);
         TesseraDao tdao = new TesseraDao(em);
@@ -115,8 +115,9 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
 
 
-        while (true) {
-            try {
+        while (true) {    
+        try {
+            while (true) {
                 System.out.println(" ");
                 System.out.println("Che tipo di utente sei?");
                 System.out.println(" ");
@@ -124,6 +125,10 @@ public class Application {
                 System.out.println("2) Admin");
                 int scelta = scanner.nextInt();
                 scanner.nextLine();
+
+                if (scelta == 0) {
+                    break; // Esci dal ciclo
+                }
 
                 switch (scelta) {
                     case 1:
@@ -192,30 +197,57 @@ public class Application {
                         }
                 }
                 break;
-/*
+
                     case 2:
-                        // L'utente è un amministratore
-                        System.out.println("Benvenuto amministratore!");
-                        // Logica per l'amministratore
+                        menuAmministratore(scanner, em);
                         break;
 
                     default:
-                        System.out.println("Scelta non valida.");
-                        break;
+                        System.out.println("Operazione non valida.");
                 }
 
             }
+        } catch (Exception e) {
+            System.out.println("Errore: " + e.getMessage());
+            scanner.nextLine(); // Pulisce il buffer dello scanner
+        } finally {
+            // Chiudi le risorse qui
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+            if (emf != null && emf.isOpen()) {
+                emf.close();
+            }
+            scanner.close(); // Chiudi lo scanner
+            System.out.println("Risorse chiuse correttamente.");
         }
     }
 
-}*/
+    private static void menuAmministratore(Scanner scanner, EntityManager em) {
+        while (true) {
+            System.out.println("Seleziona il menu: (1: Distributore, 2: Mezzi, 3: Utenti, 4: Biglietti, 5: Abbonamenti, 6:Tratte  0: Torna indietro)");
+            int scelta = scanner.nextInt();
+            scanner.nextLine();
 
-            } catch (Exception e) {
-                System.out.println("Errore: " + e.getMessage());
-                scanner.nextLine();
+            switch (scelta) {
+                case 1:
+                    MenuDistributore.gestisciMenu(scanner, em);
+                    break;
+                case 2 :
+                    MenuMezzi.gestisciMenuMezzi(scanner,em);
+                case 3:
+                    MenuUtenti.gestisciMenuUtenti(scanner,em);
+                case 4:
+                    MenuBiglietti.gestisciMenuBuglietti(scanner,em);
+                case 5:
+                    MenuAbbonamento.gestisciMenuAbbonamenti(scanner, em);
+                case 0:
+                    return;
+
+                default:
+
+                  break;
             }
         }
-            em.close();
-            emf.close();
     }
 }
