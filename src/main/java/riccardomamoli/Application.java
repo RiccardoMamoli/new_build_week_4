@@ -7,6 +7,8 @@ import riccardomamoli.dao.*;
 import riccardomamoli.entities.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,6 +40,8 @@ public class Application {
         // udao.addUtente(utente1);
         //udao.addUtente(utente2);
         //udao.addUtente(utente3);
+
+
 
 
         List<Abbonamento> abbonamenti = new ArrayList<Abbonamento>();
@@ -79,6 +83,29 @@ public class Application {
         //sdao.addStatusMezzo(statusMezzo2);
         //sdao.addStatusMezzo(statusMezzo3);
         //sdao.addStatusMezzo(statusMezzo4);
+
+
+
+        Tratta tratta1 = trdao.findById(11);
+        Tratta tratta2 = trdao.findById(12);
+
+        TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9 , 0), LocalTime.of(10,0), 70);
+        TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11 , 0), LocalTime.of(12,0), 60);
+        TrattaPercorsa FasciaOraria3 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(13 , 0), LocalTime.of(14,0), 60);
+
+        TrattaPercorsa FasciaOraria4 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(9 , 0), LocalTime.of(10,0), 70);
+        TrattaPercorsa FasciaOraria5 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(11 , 0), LocalTime.of(12,0), 60);
+        TrattaPercorsa FasciaOraria6 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(13 , 0), LocalTime.of(14,0), 60);
+
+
+
+        //tpdao.addTrattaPercorsa(FasciaOraria1);
+        //tpdao.addTrattaPercorsa(FasciaOraria2);
+        //tpdao.addTrattaPercorsa(FasciaOraria3);
+        //tpdao.addTrattaPercorsa(FasciaOraria4);
+        //tpdao.addTrattaPercorsa(FasciaOraria5);
+        //tpdao.addTrattaPercorsa(FasciaOraria6);
+
 
 
 
@@ -128,7 +155,7 @@ public class Application {
                                     List<Tratta> listaTratte = trdao.findAll();
                                     int sceltaTratta = scanner.nextInt();
                                    scanner.nextLine();
-                                   if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
+                                    if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
                                        System.out.println("Hai selezionato la tratta numero " + sceltaTratta);
                                        System.out.println(" ");
                                        Tratta trattaSelezionata = listaTratte.get(sceltaTratta);
@@ -139,6 +166,12 @@ public class Application {
                                        Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(),false  );
                                        bdao.addBiglietto(biglietto1, trattaSelezionata);
                                    }
+
+
+                                    System.out.println("Quale mezzo vuoi prendere per la tratta selezionata?");
+                                    tpdao.printMezziPerTratta(sceltaTratta);
+
+
 
 
                                     break;

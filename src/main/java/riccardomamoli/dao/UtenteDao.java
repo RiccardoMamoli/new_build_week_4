@@ -23,6 +23,6 @@ public class UtenteDao{
         tx.begin();
         em.remove(utente);
         tx.commit();
-        System.out.println("l'utente " + utente.getNome() + "è stato eliminato");
+        System.out.println("L'utente " + utente.getNome() + "è stato eliminato");
     }
 }

@@ -3,6 +3,7 @@ package riccardomamoli.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class TrattaPercorsa {
@@ -18,11 +19,13 @@ public class TrattaPercorsa {
     @JoinColumn(name = "id_mezzo")
     private Mezzo mezzo;
 
-    private LocalDateTime orarioPartenza;
-    private LocalDateTime orarioArrivo;
-    private double orarioEffettivo;
+    private LocalTime orarioPartenza;
+    private LocalTime orarioArrivo;
+    private int orarioEffettivo;
 
-    public TrattaPercorsa(Tratta tratta, Mezzo mezzo, LocalDateTime orarioPartenza, LocalDateTime orarioArrivo, double orarioEffettivo) {
+    public TrattaPercorsa(){};
+
+    public TrattaPercorsa(Tratta tratta, Mezzo mezzo, LocalTime orarioPartenza, LocalTime orarioArrivo, int orarioEffettivo) {
         this.tratta = tratta;
         this.mezzo = mezzo;
         this.orarioPartenza = orarioPartenza;
@@ -54,19 +57,19 @@ public class TrattaPercorsa {
         this.mezzo = mezzo;
     }
 
-    public LocalDateTime getOrarioPartenza() {
+    public LocalTime getOrarioPartenza() {
         return orarioPartenza;
     }
 
-    public void setOrarioPartenza(LocalDateTime orarioPartenza) {
+    public void setOrarioPartenza(LocalTime orarioPartenza) {
         this.orarioPartenza = orarioPartenza;
     }
 
-    public LocalDateTime getOrarioArrivo() {
+    public LocalTime getOrarioArrivo() {
         return orarioArrivo;
     }
 
-    public void setOrarioArrivo(LocalDateTime orarioArrivo) {
+    public void setOrarioArrivo(LocalTime orarioArrivo) {
         this.orarioArrivo = orarioArrivo;
     }
 
@@ -74,7 +77,7 @@ public class TrattaPercorsa {
         return orarioEffettivo;
     }
 
-    public void setOrarioEffettivo(double orarioEffettivo) {
+    public void setOrarioEffettivo(int orarioEffettivo) {
         this.orarioEffettivo = orarioEffettivo;
     }
 
