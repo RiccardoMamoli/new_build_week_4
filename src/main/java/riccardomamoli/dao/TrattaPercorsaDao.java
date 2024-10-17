@@ -4,7 +4,9 @@ package riccardomamoli.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import riccardomamoli.entities.Autobus;
 import riccardomamoli.entities.StatusMezzo;
+import riccardomamoli.entities.Tratta;
 import riccardomamoli.entities.TrattaPercorsa;
 
 import java.util.List;

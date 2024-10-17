@@ -206,12 +206,12 @@ public class MenuMezzi {
                     scanner.nextLine();
 
                     try {
-                        List<Double> tempiEffettivi = mdao.getTempiEffettivi(idMez, idTratta);
+                        List<Integer> tempiEffettivi = mdao.getTempiEffettivi(idMez, idTratta);
 
                         if (tempiEffettivi != null && !tempiEffettivi.isEmpty()) {
                             System.out.println("Tempi effettivi per la tratta con ID " + idTratta + " e mezzo con ID " + idMez + ":");
-                            for (Double tempo : tempiEffettivi) {
-                                System.out.println(tempo + " ore"); // Assumendo che il tempo sia in ore
+                            for (Integer tempo : tempiEffettivi) {
+                                System.out.println(tempo + " minuti"); // Assumendo che il tempo sia in ore
                             }
                         } else {
                             System.out.println("Nessun tempo effettivo trovato per la tratta con ID " + idTratta + " e mezzo con ID " + idMez);
@@ -232,7 +232,7 @@ public class MenuMezzi {
 
                     try {
                         double tempoMedio = mdao.calcolaTempoMedioEffettivo(idMezzooo, idTrattaa);
-                        System.out.println("Il tempo medio effettivo di percorrenza per la tratta con ID " + idTrattaa + " e mezzo con ID " + idMezzooo + " è: " + tempoMedio + " ore");
+                        System.out.println("Il tempo medio effettivo di percorrenza per la tratta con ID " + idTrattaa + " e mezzo con ID " + idMezzooo + " è: " + tempoMedio + " minuti");
                     } catch (Exception e) {
                         System.out.println("Errore: " + e.getMessage());
                     }

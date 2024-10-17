@@ -47,7 +47,7 @@ public class MenuDistributore {
                     nuovoDistributore.setId(id);
 
                     try {
-                        pdao.creazioneDistributore(nuovoDistributore);
+                        pdao.addPuntoVendita(nuovoDistributore);
                         System.out.println("Distributore creato.");
 
                     } catch (Exception e) {
@@ -61,7 +61,7 @@ public class MenuDistributore {
                     long idDistributore = scanner.nextLong();
                     scanner.nextLine();
                     try {
-                        pdao.rimuoviPuntovendita(idDistributore);
+                        pdao.deletePuntoVendita(idDistributore);
                         System.out.println("Distributore eliminato.");
                     } catch (Exception e) {
                         System.out.println("Errore: " + e.getMessage());
