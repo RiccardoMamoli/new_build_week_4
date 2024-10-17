@@ -12,7 +12,7 @@ public class Tratta {
 
     private String zonaPartenza;
     private String capolinea;
-    private double tempoPrevisto;
+    private int tempoPrevisto;
     private double prezzo;
 
 
@@ -29,12 +29,11 @@ public class Tratta {
 
     }
 
-    public Tratta(String zonaPartenza, String capolinea, double tempoPrevisto, double prezzo, List<TrattaPercorsa> trattePercorse) {
+    public Tratta(String zonaPartenza, String capolinea, int tempoPrevisto, double prezzo) {
         this.zonaPartenza = zonaPartenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
         this.prezzo = prezzo;
-        this.trattePercorse = trattePercorse;
     }
 
     public Long getId_tratta() {
@@ -65,7 +64,7 @@ public class Tratta {
         return tempoPrevisto;
     }
 
-    public void setTempoPrevisto(double tempoPrevisto) {
+    public void setTempoPrevisto(int tempoPrevisto) {
         this.tempoPrevisto = tempoPrevisto;
     }
 
@@ -77,14 +76,6 @@ public class Tratta {
         this.prezzo = prezzo;
     }
 
-    public List<TrattaPercorsa> getTrattePercorse() {
-        return trattePercorse;
-    }
-
-    public void setTrattePercorse(List<TrattaPercorsa> trattePercorse) {
-        this.trattePercorse = trattePercorse;
-    }
-
     @Override
     public String toString() {
         return "Tratta{" +
@@ -93,7 +84,6 @@ public class Tratta {
                 ", capolinea='" + capolinea + '\'' +
                 ", tempoPrevisto=" + tempoPrevisto +
                 ", prezzo=" + prezzo +
-                ", trattePercorse=" + trattePercorse +
                 '}';
     }
 }

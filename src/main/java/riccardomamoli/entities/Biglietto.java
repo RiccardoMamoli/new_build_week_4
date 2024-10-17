@@ -40,8 +40,7 @@ public class Biglietto {
     public Biglietto() {
     }
 
-    public Biglietto(Mezzo mezzo, PuntoVendita puntoVendita, Tratta tratta, String codice_univoco_biglietto, LocalDate data_emissione, boolean timbrato) {
-        this.mezzo = mezzo;
+    public Biglietto(PuntoVendita puntoVendita, Tratta tratta, LocalDate data_emissione, boolean timbrato) {
         this.puntoVendita = puntoVendita;
         this.tratta = tratta;
         this.codice_univoco_biglietto = generaCodice();
@@ -55,14 +54,6 @@ public class Biglietto {
 
     public Long getId_biglietto() {
         return id_biglietto;
-    }
-
-    public Mezzo getMezzo() {
-        return mezzo;
-    }
-
-    public void setMezzo(Mezzo mezzo) {
-        this.mezzo = mezzo;
     }
 
     public PuntoVendita getPuntoVendita() {
@@ -105,7 +96,6 @@ public class Biglietto {
     public String toString() {
         return "Biglietto{" +
                 "id_biglietto=" + id_biglietto +
-                ", mezzo=" + mezzo +
                 ", puntoVendita=" + puntoVendita +
                 ", tratta=" + tratta +
                 ", codice_univoco_biglietto=" + codice_univoco_biglietto +
