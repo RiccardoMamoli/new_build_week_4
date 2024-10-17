@@ -17,8 +17,6 @@ public class TrattaPercorsaDao {
         this.em = em;
     }
 
-
-
     public List<TrattaPercorsa> findAllStatus() {
 
         TypedQuery<TrattaPercorsa> query = em.createQuery("SELECT tp FROM TrattaPercorsa tp", TrattaPercorsa.class);

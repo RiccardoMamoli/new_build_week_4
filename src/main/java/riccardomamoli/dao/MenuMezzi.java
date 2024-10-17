@@ -63,11 +63,11 @@ public class MenuMezzi {
                         // Richiesta dei parametri per Autobus
                         System.out.print("Inserisci la capacità dell'Autobus: ");
                         int capacitaAutobus = scanner.nextInt();
-                        scanner.nextLine(); // Pulisce il buffer
+                        scanner.nextLine();
 
                         System.out.print("Inserisci lo stato dell'Autobus (1: IN_SERVIZIO, 2: MANUTENZIONE): ");
                         int statoInput = scanner.nextInt();
-                        scanner.nextLine(); // Pulisce il buffer
+                        scanner.nextLine();
 
                         StatoMezzo statoAutobus;
                         if (statoInput == 1) {
