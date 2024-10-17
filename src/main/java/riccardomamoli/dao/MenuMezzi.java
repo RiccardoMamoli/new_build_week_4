@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import riccardomamoli.dao.MezzoDao;
 import riccardomamoli.entities.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuMezzi {
@@ -12,7 +13,7 @@ public class MenuMezzi {
         MezzoDao mdao = new MezzoDao(em);
 
         while (true) {
-            System.out.println("Menu Mezzi: (1: Crea, 2: Elimina, 3: Consulta, 4: Ricerca mezzo ,5: Verifica stato mezzo, 6: Cambia stato mezzo, 7: Trova tutte le tratte di un mezzo, 8: Conteggio tratte per mezzo  0: Torna indietro)");
+            System.out.println("Menu Mezzi: (1: Crea, 2: Elimina, 3: Ricerca dati mezzo, 4: Verifica stato mezzo, 5: Cambia stato mezzo, 6: Trova tutte le tratte di un mezzo, 7: Conteggio tratte per mezzo  0: Torna indietro)");
             int scelta = scanner.nextInt();
             scanner.nextLine();
 
@@ -97,29 +98,94 @@ public class MenuMezzi {
                     }
                     break;
 
-//                case 3:
-//                    // Consultazione di un mezzo
-//                    System.out.println("Inserisci l'ID del mezzo da consultare:");
-//                    long idConsulta = scanner.nextLong();
-//                    scanner.nextLine();
-//                    try {
-//                        Mezzo mezzo = mdao.findByID(idConsulta);
-//                        System.out.println(mezzo);
-//                    } catch (Exception e) {
-//                        System.out.println("Errore: " + e.getMessage());
-//                    }
-//                    break;
-//
-//                case 4:
-//                    // Modifica dello stato del mezzo
-//                    System.out.println("Inserisci l'ID del mezzo da modificare:");
-//                    long idModifica = scanner.nextLong();
-//                    scanner.nextLine();
-//                    System.out.println("Inserisci il nuovo stato (in servizio o in manutenzione):");
-//                    String nuovoStato = scanner.nextLine();
-//                    mdao.modifyStatusByID(idModifica, nuovoStato);
-//                    System.out.println("Stato modificato.");
-//                    break;
+                case 3:
+                    // dati di un mezzo
+                    System.out.println("Inserisci l'ID del mezzo :");
+                    long idConsulta = scanner.nextLong();
+                    scanner.nextLine();
+                    try {
+                        Mezzo mezzo = mdao.ricercoMezzo(idConsulta);
+                        System.out.println(mezzo);
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+                case 4:
+                    // Verifica dello stato di un mezzo
+                    System.out.println("Inserisci l'ID del mezzo per verificare lo stato:");
+                    long idStato = scanner.nextLong();
+                    scanner.nextLine();
+
+                    try {
+                        mdao.statoMezzo(idStato);
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+
+                    case 5:
+                    // Cambia lo stato del Mezzo
+                    System.out.println("Inserisci l'ID del mezzo per cambiare lo stato:");
+                    long idCambiaStato = scanner.nextLong();
+                    scanner.nextLine();
+
+                    try {
+                        Mezzo mezzo = mdao.ricercoMezzo(idCambiaStato);
+                        if (mezzo != null) {
+                            String statoAttuale = String.valueOf(mezzo.getStatoAttuale());
+                            System.out.println("Lo stato attuale del mezzo è: " + statoAttuale);
+
+                            System.out.print("Vuoi cambiare lo stato? (s/n): ");
+                            String risposta = scanner.nextLine();
+
+                            if (risposta.equalsIgnoreCase("s")) {
+                                mdao.cambiaStatoMezzo(idCambiaStato);
+                                System.out.println("Stato cambiato con successo.");
+                            } else {
+                                System.out.println("Operazione annullata. Lo stato del mezzo rimane invariato.");
+                            }
+                        } else {
+                            System.out.println("Mezzo non trovato per ID: " + idCambiaStato);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+                case 6:
+                    // Trova le tratte percorse da un mezzo
+                    System.out.println("Inserisci l'ID del mezzo per trovare le tratte percorse:");
+                    long idMezz = scanner.nextLong();
+                    scanner.nextLine();
+
+                    try {
+                        List<TrattaPercorsa> trattePercorse = mdao.trovaTrattePercorse(idMezz);
+                        if (trattePercorse != null && !trattePercorse.isEmpty()) {
+                            System.out.println("Tratte percorse dal mezzo con ID " + idMezz + ":");
+                            for (TrattaPercorsa tratta : trattePercorse) {
+                                System.out.println(tratta);
+                            }
+                        } else {
+                            System.out.println("Nessuna tratta percorsa trovata per il mezzo con ID: " + idMezz);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+                case 7:
+                    // Conta le tratte percorse da un mezzo
+                    System.out.println("Inserisci l'ID del mezzo per contare le tratte percorse:");
+                    long idMezzoo = scanner.nextLong();
+                    scanner.nextLine();
+
+                    try {
+                        long numeroTratte = mdao.countTratteInPeriod(idMezzoo);
+                        System.out.println("Il numero di tratte percorse dal mezzo con ID " + idMezzoo + " è: " + numeroTratte);
+                    } catch (Exception e) {
+                        System.out.println("Errore: " + e.getMessage());
+                    }
+                    break;
+
+
 
                 case 0:
                     return;

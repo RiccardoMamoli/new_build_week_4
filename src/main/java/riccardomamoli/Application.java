@@ -128,7 +128,7 @@ public class Application {
 
                 default:
                     MenuMezzi.gestisciMenuMezzi(scanner,em);
-                    break;
+                  break;
             }
         }
     }

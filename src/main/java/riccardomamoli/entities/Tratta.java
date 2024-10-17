@@ -29,12 +29,11 @@ public class Tratta {
 
     }
 
-    public Tratta(String zonaPartenza, String capolinea, double tempoPrevisto, double prezzo, List<TrattaPercorsa> trattePercorse) {
+    public Tratta(String zonaPartenza, String capolinea, double tempoPrevisto, double prezzo) {
         this.zonaPartenza = zonaPartenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
         this.prezzo = prezzo;
-        this.trattePercorse = trattePercorse;
     }
 
     public Long getId_tratta() {
