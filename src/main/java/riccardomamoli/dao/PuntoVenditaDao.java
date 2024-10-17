@@ -91,46 +91,40 @@ public class PuntoVenditaDao {
         PuntoVendita puntoVenditaTrovato = em.find(PuntoVendita.class, id);
         return puntoVenditaTrovato;
     }
+
     public List<PuntoVendita> findAll() {
         TypedQuery<PuntoVendita> query = em.createQuery("SELECT pv FROM PuntoVendita pv", PuntoVendita.class);
         List<PuntoVendita> risultati = query.getResultList();
 
         if (risultati.isEmpty()) {
-            System.out.println(" ");
             System.out.println("Non ci sono punti vendita disponibili.");
-            System.out.println(" ");
         } else {
-
             for (int i = 0; i < risultati.size(); i++) {
                 PuntoVendita pv = risultati.get(i);
-                System.out.println("----------------------------");
-                System.out.println("Punto vendita numero " + (i + 1) + ":");
+                System.out.println("\nPunto vendita numero " + (i + 1) + ":");
 
                 String tipologia = null;
                 String status = null;
 
                 if (pv instanceof DistributoreAutomatico) {
                     tipologia = "Distributore Automatico";
-                    if (((DistributoreAutomatico) pv).isAttivo()) {
-                        status = "attivo";
-                    }
-                    else if (!((DistributoreAutomatico) pv).isAttivo()) {
-                        status = "non attivo";
-                    }
-
-                } else if (pv instanceof DistributoreFisico) {
-                    tipologia = "Punto Fisico";
-                    status = null;
-
+                    status = ((DistributoreAutomatico) pv).isAttivo() ? "attivo" : "non attivo";
                 }
+
+                else if (pv instanceof DistributoreFisico) {
+                    tipologia = "Punto Vendita Fisico";
+                }
+
                 System.out.println("ID: " + pv.getId());
                 System.out.println("Tipologia: " + tipologia);
-                if (status != null) {//questo per stampare lo status solo in DistributoriAutomatici
+
+                if (status != null) {
                     System.out.println("Status: " + status);
                 }
-                System.out.println("----------------------------");
+                System.out.println();
             }
         }
         return risultati;
     }
+
 }

@@ -18,18 +18,13 @@ public class BigliettoDao {
         tx.begin();
         em.persist(biglietto);
         tx.commit();
-        System.out.println("Ecco il tuo biglietto numero: " + biglietto.getCodice_univoco_biglietto());
+        System.out.println("Ecco il tuo biglietto:");
+        System.out.println(" ");
+        System.out.println("Numero " + biglietto.getCodice_univoco_biglietto());
         System.out.println("Tratta " + tratta.getZonaPartenza() + " - " + tratta.getCapolinea());
-        System.out.println("costo: " + tratta.getPrezzo());
+        System.out.println("Costo: " + tratta.getPrezzo());
         System.out.println("Emesso il: " + biglietto.getData_emissione());
     }
 
-    public void removeBiglietto(Tratta tratta) {
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.remove(tratta);
-        tx.commit();
-        System.out.println("La tratta " + tratta.getId_tratta() + "con partenza da" + tratta.getZonaPartenza() + "e capolinea" + tratta.getCapolinea() + "è stata eliminata");
-    }
 
 }

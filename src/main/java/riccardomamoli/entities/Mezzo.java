@@ -18,24 +18,22 @@ public abstract class Mezzo {
     private StatoMezzo statoAttuale;
 
 
-    @OneToMany(mappedBy = "mezzo")
-    private List<TrattaPercorsa> trattePercorse;
+     @OneToMany(mappedBy = "mezzo")
+     private List<TrattaPercorsa> trattePercorse;
 
     @OneToMany(mappedBy = "mezzo")
     private List<StatusMezzo> stati;
 
-   /* @OneToMany(mappedBy = "mezzo")
-    private List<Biglietto> biglietti;
-*/
+   @OneToMany(mappedBy = "mezzo")
+   private List<Biglietto> biglietti;
+
     public Mezzo() {
 
     }
 
-    public Mezzo(int capienza, StatoMezzo statoAttuale, List<TrattaPercorsa> trattePercorse, List<StatusMezzo> stati) {
+    public Mezzo(int capienza, StatoMezzo statoAttuale) {
         this.capienza = capienza;
         this.statoAttuale = statoAttuale;
-        this.trattePercorse = trattePercorse;
-        this.stati = stati;
     }
 
     public Long getId_Mezzo() {
@@ -60,30 +58,12 @@ public abstract class Mezzo {
     }
 
 
-    public List<TrattaPercorsa> getTrattePercorse() {
-        return trattePercorse;
-    }
-
-    public void setTrattePercorse(List<TrattaPercorsa> trattePercorse) {
-        this.trattePercorse = trattePercorse;
-    }
-
-    public List<StatusMezzo> getStati() {
-        return stati;
-    }
-
-    public void setStati(List<StatusMezzo> stati) {
-        this.stati = stati;
-    }
-
     @Override
     public String toString() {
         return "Mezzo{" +
                 "id_Mezzo=" + id_Mezzo +
                 ", capienza=" + capienza +
                 ", statoAttuale=" + statoAttuale +
-                ", trattePercorse=" + trattePercorse +
-                ", stati=" + stati +
                 '}';
     }
 }
