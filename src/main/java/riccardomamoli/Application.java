@@ -37,7 +37,7 @@ public class Application {
         Utente utente1 = new Utente("franco", "rossi", TipologiaUtente.UNDER25, LocalDate.of(2000, 10, 3));
         Utente utente2 = new Utente("mattia", "gonnola", TipologiaUtente.OVER60, LocalDate.of(1890, 2, 4));
         Utente utente3 = new Utente("giacomo", "guidotti", TipologiaUtente.UNDER18, LocalDate.of(2007, 11, 9));
-        // udao.addUtente(utente1);
+        //udao.addUtente(utente1);
         //udao.addUtente(utente2);
         //udao.addUtente(utente3);
 
@@ -51,7 +51,7 @@ public class Application {
         PuntoVendita p1 = new DistributoreAutomatico(abbonamenti, biglietti, true);
         PuntoVendita p2 = new DistributoreFisico(abbonamenti, biglietti);
         //pdao.addPuntoVendita(p1);
-        // pdao.addPuntoVendita(p2);
+         //pdao.addPuntoVendita(p2);
 
         LocalDate dataRilascio = LocalDate.now();
         LocalDate dataScadenza = dataRilascio.plusYears(1);
@@ -67,9 +67,9 @@ public class Application {
         Mezzo mezzo1 = new Autobus(70, StatoMezzo.IN_SERVIZIO);
         Mezzo mezzo2 = new Tram(80, StatoMezzo.MANUTENZIONE);
         Mezzo mezzo3 = new Autobus(100, StatoMezzo.IN_SERVIZIO);
-        // mdao.creazioneMezzo(mezzo1);
-        // mdao.creazioneMezzo(mezzo2);
-        // mdao.creazioneMezzo(mezzo3);
+        //mdao.creazioneMezzo(mezzo1);
+         //mdao.creazioneMezzo(mezzo2);
+         //mdao.creazioneMezzo(mezzo3);
 
         Mezzo mezzoid1 = mdao.ricercoMezzo(1);
         Mezzo mezzoid2 = mdao.ricercoMezzo(2);
@@ -77,17 +77,17 @@ public class Application {
         StatusMezzo statusMezzo1 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2018,12,10), LocalDate.of(2018, 12, 20), mezzoid1);
         StatusMezzo statusMezzo2 = new StatusMezzo(StatoMezzo.MANUTENZIONE, LocalDate.of(2019,10,20), LocalDate.of(2019, 10, 25), mezzoid2);
         StatusMezzo statusMezzo3 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2020,1,10), LocalDate.now(), mezzoid2);
-        StatusMezzo statusMezzo4 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2024,10,18), LocalDate.now(), mezzoid2);
+
 
         //sdao.addStatusMezzo(statusMezzo1);
         //sdao.addStatusMezzo(statusMezzo2);
         //sdao.addStatusMezzo(statusMezzo3);
-        //sdao.addStatusMezzo(statusMezzo4);
 
 
 
-        Tratta tratta1 = trdao.findById(11);
-        Tratta tratta2 = trdao.findById(12);
+
+        Tratta tratta1 = trdao.findById(1);
+        Tratta tratta2 = trdao.findById(2);
 
         TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9 , 0), LocalTime.of(10,0), 70);
         TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11 , 0), LocalTime.of(12,0), 60);
@@ -99,12 +99,12 @@ public class Application {
 
 
 
-        //tpdao.addTrattaPercorsa(FasciaOraria1);
-        //tpdao.addTrattaPercorsa(FasciaOraria2);
-        //tpdao.addTrattaPercorsa(FasciaOraria3);
-        //tpdao.addTrattaPercorsa(FasciaOraria4);
-        //tpdao.addTrattaPercorsa(FasciaOraria5);
-        //tpdao.addTrattaPercorsa(FasciaOraria6);
+        tpdao.addTrattaPercorsa(FasciaOraria1);
+        tpdao.addTrattaPercorsa(FasciaOraria2);
+        tpdao.addTrattaPercorsa(FasciaOraria3);
+        tpdao.addTrattaPercorsa(FasciaOraria4);
+        tpdao.addTrattaPercorsa(FasciaOraria5);
+        tpdao.addTrattaPercorsa(FasciaOraria6);
 
 
 
