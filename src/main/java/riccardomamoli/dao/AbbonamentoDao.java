@@ -18,10 +18,7 @@ public class AbbonamentoDao {
     }
 
     public void addAbbonamento(Abbonamento abbonamento) {
-<<<<<<< HEAD
-        // Check if an abbonamento with the same codice_univoco_abbonamento already exists
-=======
->>>>>>> origin/Prova_esplosione
+
         Abbonamento existingAbbonamento = em.createQuery("SELECT a FROM Abbonamento a WHERE a.codice_univoco_abbonamento = :codice", Abbonamento.class)
                 .setParameter("codice", abbonamento.getCodice_univoco_abbonamento())
                 .getResultStream()
@@ -30,32 +27,25 @@ public class AbbonamentoDao {
 
         if (existingAbbonamento != null) {
             System.out.println("Abbonamento with codice_univoco_abbonamento " + abbonamento.getCodice_univoco_abbonamento() + " already exists.");
-<<<<<<< HEAD
-            return; // Avoid inserting a duplicate
-=======
+
             return;
->>>>>>> origin/Prova_esplosione
+
         }
 
         em.getTransaction().begin();
         em.persist(abbonamento);
-<<<<<<< HEAD
-=======
         System.out.println("Abbonamento acquistato! Ecco il riepilogo: ");
         System.out.println(" ");
         System.out.println("ID Abbonamento: " + abbonamento.getId_abbonamento());
         System.out.println("Data emmisione: " + abbonamento.getData_emmissione());
         System.out.println("Data scadenza: " + abbonamento.getData_scadenza());
         System.out.println("Tipologia di abbonamento: " + abbonamento.getTipologia_abbonamento());
->>>>>>> origin/Prova_esplosione
+
         em.getTransaction().commit();
     }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Prova_esplosione
     public void updateAbbonamento(Abbonamento abbonamento) {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
