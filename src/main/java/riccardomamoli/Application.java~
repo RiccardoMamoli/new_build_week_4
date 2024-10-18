@@ -549,6 +549,7 @@ public class Application {
 
                                                                     if (sceltaStampaUtente == 1) {
                                                                         udao.printByUser(utente, nuovaTessera);
+                                                                        statoSelezioneMenu = true;
                                                                     } else if(sceltaStampaUtente == 2) {
                                                                         udao.trovaStoricoAbbonamenti(nuovaTessera);
                                                                     } else if (sceltaStampaUtente == 3) {
