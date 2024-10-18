@@ -40,10 +40,6 @@ public class Utente {
         this.data_di_nascita = data_di_nascita;
     }
 
-    public List<Tessera> getTessere() {
-        return tessere;
-    }
-
     public long getId() {
         return id;
     }

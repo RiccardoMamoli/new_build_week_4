@@ -42,8 +42,6 @@ public class StatusMezzoDao {
     public void addStatusMezzo(StatusMezzo statusMezzo) {
         EntityTransaction tx = em.getTransaction();
 
-        /*
-
         TypedQuery<StatusMezzo> query = em.createQuery("SELECT sm FROM StatusMezzo sm WHERE sm.mezzo.id = :mezzoId ORDER BY sm.dataFine DESC", StatusMezzo.class);
         query.setParameter("mezzoId", statusMezzo.getMezzo().getId_Mezzo());
 
@@ -56,8 +54,6 @@ public class StatusMezzoDao {
                 throw new IllegalArgumentException("Errore nell'inserimento delle date.");
             }
         }
-
-         */
 
         tx.begin();
         em.persist(statusMezzo);

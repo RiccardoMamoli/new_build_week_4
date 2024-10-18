@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
-import java.util.UUID;
 
 @Entity
 @Table(name = "abbonamento")
@@ -19,10 +17,6 @@ public class Abbonamento {
     @ManyToOne
     @JoinColumn(name = "id_punto_vendita", nullable = false)
     private PuntoVendita puntoVendita;
-
-    @ManyToOne
-    @JoinColumn(name = "id_tessera", nullable = false)
-    private Tessera tessera;
 
     @OneToMany(mappedBy = "abbonamento")
     private List<TrattaAbbonamento> trattaAbbonamenti;
@@ -45,38 +39,13 @@ public class Abbonamento {
     public Abbonamento() {
     }
 
-    public Abbonamento(PuntoVendita puntoVendita, Tessera tessera, LocalDate data_emmissione, LocalDate data_scadenza, TipologiaAbbonamento tipologia_abbonamento) {
+    public Abbonamento(PuntoVendita puntoVendita, long codice_univoco_abbonamento, LocalDate data_emmissione, LocalDate data_scadenza, TipologiaAbbonamento tipologia_abbonamento, double prezzo) {
         this.puntoVendita = puntoVendita;
-        this.tessera = tessera;
-        this.codice_univoco_abbonamento = generaCodice();
+        this.codice_univoco_abbonamento = codice_univoco_abbonamento;
         this.data_emmissione = data_emmissione;
         this.data_scadenza = data_scadenza;
         this.tipologia_abbonamento = tipologia_abbonamento;
-        this.prezzo = definisciPrezzi();
-    }
-
-    private long generaCodice() {
-        Random random = new Random();
-        return 100000 + random.nextInt(900000);
-    }
-
-    public double definisciPrezzi() {
-        switch (this.tipologia_abbonamento) {
-            case MENSILE:
-                return 30.0;
-            case SETTIMANALE:
-                return 10.0;
-            default:
-                return 0.0;
-        }
-    }
-
-    public Tessera getTessera() {
-        return tessera;
-    }
-
-    public void setTessera(Tessera tessera) {
-        this.tessera = tessera;
+        this.prezzo = prezzo;
     }
 
     public long getId_abbonamento() {
@@ -140,8 +109,6 @@ public class Abbonamento {
         return "Abbonamento{" +
                 "id_abbonamento=" + id_abbonamento +
                 ", puntoVendita=" + puntoVendita +
-                ", tessera=" + tessera +
-                ", trattaAbbonamenti=" + trattaAbbonamenti +
                 ", codice_univoco_abbonamento=" + codice_univoco_abbonamento +
                 ", data_emmissione=" + data_emmissione +
                 ", data_scadenza=" + data_scadenza +

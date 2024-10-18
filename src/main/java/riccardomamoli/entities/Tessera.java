@@ -3,7 +3,6 @@ package riccardomamoli.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,12 +19,9 @@ public class Tessera {
     @JoinColumn(name = "id_utente")
     private Utente utente;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "id_abbonamento")
-    private List<Abbonamento> storicoAbbonamenti;
-
-    @OneToMany(mappedBy = "tessera")
-    private List<Abbonamento> storicoAbbonamentiDaTessera;
+    private Abbonamento abbonamento;
 
     @Column(name = "numero_tessera", unique = true)
     private String numero_tessera;
@@ -42,20 +38,13 @@ public class Tessera {
     public Tessera() {
     }
 
-    public Tessera(Utente utente, LocalDate data_rilascio, LocalDate data_scadenza, boolean attiva) {
+    public Tessera(Utente utente, Abbonamento abbonamento, String numero_tessera, LocalDate data_rilascio, LocalDate data_scadenza, boolean attiva) {
         this.utente = utente;
+        this.abbonamento = abbonamento;
         this.numero_tessera = generaCodice();
         this.data_rilascio = data_rilascio;
         this.data_scadenza = data_scadenza;
         this.attiva = attiva;
-    }
-
-    public List<Abbonamento> getStoricoAbbonamentiDaTessera() {
-        return storicoAbbonamentiDaTessera;
-    }
-
-    public void setStoricoAbbonamentiDaTessera(List<Abbonamento> storicoAbbonamentiDaTessera) {
-        this.storicoAbbonamentiDaTessera = storicoAbbonamentiDaTessera;
     }
 
     private String generaCodice() {
@@ -72,6 +61,14 @@ public class Tessera {
 
     public void setUtente(Utente utente) {
         this.utente = utente;
+    }
+
+    public Abbonamento getAbbonamento() {
+        return abbonamento;
+    }
+
+    public void setAbbonamento(Abbonamento abbonamento) {
+        this.abbonamento = abbonamento;
     }
 
     public String getNumero_tessera() {
@@ -106,19 +103,12 @@ public class Tessera {
         this.attiva = attiva;
     }
 
-    public List<Abbonamento> getStoricoAbbonamenti() {
-        return storicoAbbonamenti;
-    }
-
-    public void setStoricoAbbonamenti(List<Abbonamento> storicoAbbonamenti) {
-        this.storicoAbbonamenti = storicoAbbonamenti;
-    }
-
     @Override
     public String toString() {
         return "Tessera{" +
                 "id=" + id +
                 ", utente=" + utente +
+                ", abbonamento=" + abbonamento +
                 ", numero_tessera='" + numero_tessera + '\'' +
                 ", data_rilascio=" + data_rilascio +
                 ", data_scadenza=" + data_scadenza +

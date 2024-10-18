@@ -1,7 +1,6 @@
-package riccardomamoli.menu;
+package riccardomamoli.dao;
 
 import jakarta.persistence.EntityManager;
-import riccardomamoli.dao.PuntoVenditaDao;
 import riccardomamoli.entities.DistributoreAutomatico;
 import riccardomamoli.entities.DistributoreFisico;
 import riccardomamoli.entities.PuntoVendita;

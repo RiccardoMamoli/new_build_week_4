@@ -13,17 +13,15 @@ import java.util.List;
 public class DistributoreAutomatico extends PuntoVendita {
 
     @Column(name = "attivo")
-    private boolean attivo = true;
+    private boolean attivo;
 
     public DistributoreAutomatico() {
     }
 
-   public DistributoreAutomatico(boolean attivo) {
-         // super(abbonamenti, biglietti);
+    public DistributoreAutomatico(List<Abbonamento> abbonamenti, List<Biglietto> biglietti, boolean attivo) {
+        super(abbonamenti, biglietti);
         this.attivo = attivo;
     }
-
-
 
     public boolean isAttivo() {
         return attivo;
