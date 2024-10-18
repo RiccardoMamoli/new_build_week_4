@@ -17,7 +17,7 @@ public class MenuTratte {
                     "2: Elimina Tratta\n" +
                     "3: Modifica Tratta\n" +
                     "4: Elenco Tratte\n" +
-                    "5: Consulta Tratta\n"+
+                    "5: Consulta Tratta\n" +
                     "0: Torna indietro");
 
             int scelta = scanner.nextInt();
@@ -71,88 +71,96 @@ public class MenuTratte {
                     break;
 
                 case 2:
-                    // Eliminazione di una tratta
-                    System.out.print("Inserisci l'ID della tratta da eliminare: ");
-                    long idDaEliminare = scanner.nextLong();
-                    scanner.nextLine();
-                    try {
-                        Tratta trattaDaEliminare = tdao.findById(idDaEliminare);
-                        if (trattaDaEliminare != null) {
-                            tdao.removeTratta(trattaDaEliminare);
-                            System.out.println("Tratta eliminata con successo.");
-                        } else {
-                            System.out.println("Tratta non trovata.");
+                    // Eliminazione di una tratta con controllo dell'ID
+                    long idDaEliminare;
+                    Tratta trattaDaEliminare;
+                    do {
+                        System.out.print("Inserisci l'ID della tratta da eliminare: ");
+                        idDaEliminare = scanner.nextLong();
+                        scanner.nextLine();
+                        trattaDaEliminare = tdao.findById(idDaEliminare);
+                        if (trattaDaEliminare == null) {
+                            System.out.println("ID non valido. La tratta non esiste.");
                         }
+                    } while (trattaDaEliminare == null);
+
+                    try {
+                        tdao.removeTratta(trattaDaEliminare);
+                        System.out.println("Tratta eliminata con successo.");
                     } catch (Exception e) {
                         System.out.println("Errore durante l'eliminazione della tratta: " + e.getMessage());
                     }
                     break;
 
                 case 3:
-                    // Modifica di una tratta
-                    System.out.print("Inserisci l'ID della tratta da modificare: ");
-                    long idDaModificare = scanner.nextLong();
-                    scanner.nextLine();
-                    Tratta trattaDaModificare = tdao.findById(idDaModificare);
-                    if (trattaDaModificare != null) {
-                        System.out.print("Inserisci la nuova zona di partenza (o premi invio per mantenere il valore attuale): ");
-                        String nuovaZonaPartenza = scanner.nextLine();
-                        if (!nuovaZonaPartenza.isEmpty()) {
-                            trattaDaModificare.setZonaPartenza(nuovaZonaPartenza);
+                    // Modifica di una tratta con controllo dell'ID
+                    long idDaModificare;
+                    Tratta trattaDaModificare;
+                    do {
+                        System.out.print("Inserisci l'ID della tratta da modificare: ");
+                        idDaModificare = scanner.nextLong();
+                        scanner.nextLine();
+                        trattaDaModificare = tdao.findById(idDaModificare);
+                        if (trattaDaModificare == null) {
+                            System.out.println("ID non valido. La tratta non esiste.");
                         }
+                    } while (trattaDaModificare == null);
 
-                        System.out.print("Inserisci il nuovo capolinea (o premi invio per mantenere il valore attuale): ");
-                        String nuovoCapolinea = scanner.nextLine();
-                        if (!nuovoCapolinea.isEmpty()) {
-                            trattaDaModificare.setCapolinea(nuovoCapolinea);
-                        }
+                    System.out.print("Inserisci la nuova zona di partenza (o premi invio per mantenere il valore attuale): ");
+                    String nuovaZonaPartenza = scanner.nextLine();
+                    if (!nuovaZonaPartenza.isEmpty()) {
+                        trattaDaModificare.setZonaPartenza(nuovaZonaPartenza);
+                    }
 
-                        // Modifica del tempo previsto con validazione
-                        System.out.print("Inserisci il nuovo tempo previsto (o premi invio per mantenere il valore attuale): ");
-                        String inputTempo = scanner.nextLine();
-                        if (!inputTempo.isEmpty()) {
-                            try {
-                                int nuovoTempo = Integer.parseInt(inputTempo);
-                                if (nuovoTempo >= 0) {
-                                    trattaDaModificare.setTempoPrevisto(nuovoTempo);
-                                } else {
-                                    System.out.println("Il tempo previsto deve essere un numero positivo.");
-                                }
-                            } catch (NumberFormatException e) {
-                                System.out.println("Input non valido. Inserisci un numero.");
-                            }
-                        }
+                    System.out.print("Inserisci il nuovo capolinea (o premi invio per mantenere il valore attuale): ");
+                    String nuovoCapolinea = scanner.nextLine();
+                    if (!nuovoCapolinea.isEmpty()) {
+                        trattaDaModificare.setCapolinea(nuovoCapolinea);
+                    }
 
-                        // Modifica del prezzo con validazione
-                        System.out.print("Inserisci il nuovo prezzo (o premi invio per mantenere il valore attuale): ");
-                        String inputPrezzo = scanner.nextLine();
-                        if (!inputPrezzo.isEmpty()) {
-                            try {
-                                String nuovoPrezzoInput = inputPrezzo.replace(',', '.');
-                                double nuovoPrezzo = Double.parseDouble(nuovoPrezzoInput);
-                                if (nuovoPrezzo >= 0) {
-                                    trattaDaModificare.setPrezzo(nuovoPrezzo);
-                                } else {
-                                    System.out.println("Il prezzo deve essere un numero positivo.");
-                                }
-                            } catch (NumberFormatException e) {
-                                System.out.println("Input non valido. Inserisci un numero valido per il prezzo.");
-                            }
-                        }
-
+                    // Modifica del tempo previsto con validazione
+                    System.out.print("Inserisci il nuovo tempo previsto (o premi invio per mantenere il valore attuale): ");
+                    String inputTempo = scanner.nextLine();
+                    if (!inputTempo.isEmpty()) {
                         try {
-                            tdao.addTratta(trattaDaModificare);
-                            System.out.println("Tratta aggiornata.");
-                        } catch (Exception e) {
-                            System.out.println("Errore durante l'aggiornamento della tratta: " + e.getMessage());
+                            int nuovoTempo = Integer.parseInt(inputTempo);
+                            if (nuovoTempo >= 0) {
+                                trattaDaModificare.setTempoPrevisto(nuovoTempo);
+                            } else {
+                                System.out.println("Il tempo previsto deve essere un numero positivo.");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Input non valido. Inserisci un numero.");
                         }
-                    } else {
-                        System.out.println("Tratta non trovata.");
+                    }
+
+                    // Modifica del prezzo con validazione
+                    System.out.print("Inserisci il nuovo prezzo (o premi invio per mantenere il valore attuale): ");
+                    String inputPrezzo = scanner.nextLine();
+                    if (!inputPrezzo.isEmpty()) {
+                        try {
+                            String nuovoPrezzoInput = inputPrezzo.replace(',', '.');
+                            double nuovoPrezzo = Double.parseDouble(nuovoPrezzoInput);
+                            if (nuovoPrezzo >= 0) {
+                                trattaDaModificare.setPrezzo(nuovoPrezzo);
+                            } else {
+                                System.out.println("Il prezzo deve essere un numero positivo.");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Input non valido. Inserisci un numero valido per il prezzo.");
+                        }
+                    }
+
+                    try {
+                        tdao.addTratta(trattaDaModificare);
+                        System.out.println("Tratta aggiornata.");
+                    } catch (Exception e) {
+                        System.out.println("Errore durante l'aggiornamento della tratta: " + e.getMessage());
                     }
                     break;
 
                 case 4:
-                    // Consultazione di una tratta
+                    // Visualizzazione elenco tratte
                     try {
                         List<Tratta> tratte = tdao.findAll();
                         System.out.println("Elenco Tratte:");
@@ -166,25 +174,25 @@ public class MenuTratte {
                     break;
 
                 case 5:
-                    // Elenco di tutte le tratte
-                    System.out.print("Inserisci l'ID della tratta da consulftare: ");
-                    long idDaConsultare = scanner.nextLong();
-                    scanner.nextLine();
-                    try {
-                        Tratta trattaTrovata = tdao.findById(idDaConsultare);
-                        if (trattaTrovata != null) {
-                            System.out.println("Dettagli della Tratta:");
-                            System.out.println("ID Tratta        : " + trattaTrovata.getId_tratta());
-                            System.out.println("Zona di Partenza : " + trattaTrovata.getZonaPartenza());
-                            System.out.println("Capolinea        : " + trattaTrovata.getCapolinea());
-                            System.out.println("Tempo Previsto   : " + trattaTrovata.getTempoPrevisto() + " minuti");
-                            System.out.println("Prezzo           : €" + trattaTrovata.getPrezzo());
-                        } else {
-                            System.out.println("Tratta non trovata.");
+                    // Consultazione di una tratta con controllo dell'ID
+                    long idDaConsultare;
+                    Tratta trattaTrovata;
+                    do {
+                        System.out.print("Inserisci l'ID della tratta da consultare: ");
+                        idDaConsultare = scanner.nextLong();
+                        scanner.nextLine();
+                        trattaTrovata = tdao.findById(idDaConsultare);
+                        if (trattaTrovata == null) {
+                            System.out.println("ID non valido. La tratta non esiste.");
                         }
-                    } catch (Exception e) {
-                        System.out.println("Errore durante la consultazione della tratta: " + e.getMessage());
-                    }
+                    } while (trattaTrovata == null);
+
+                    System.out.println("Dettagli della Tratta:");
+                    System.out.println("ID Tratta        : " + trattaTrovata.getId_tratta());
+                    System.out.println("Zona di Partenza : " + trattaTrovata.getZonaPartenza());
+                    System.out.println("Capolinea        : " + trattaTrovata.getCapolinea());
+                    System.out.println("Tempo Previsto   : " + trattaTrovata.getTempoPrevisto() + " minuti");
+                    System.out.println("Prezzo           : €" + trattaTrovata.getPrezzo());
                     break;
 
                 case 0:
