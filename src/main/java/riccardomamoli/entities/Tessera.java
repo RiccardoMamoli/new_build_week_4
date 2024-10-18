@@ -95,6 +95,14 @@ public class Tessera {
         this.attiva = attiva;
     }
 
+    public List<Abbonamento> getStoricoAbbonamenti() {
+        return storicoAbbonamenti;
+    }
+
+    public void setStoricoAbbonamenti(List<Abbonamento> storicoAbbonamenti) {
+        this.storicoAbbonamenti = storicoAbbonamenti;
+    }
+
     @Override
     public String toString() {
         return "Tessera{" +
