@@ -12,8 +12,7 @@ public class MenuUtenti {
         UtenteDao udao = new UtenteDao(em);
 
         while (true) {
-            System.out.println("Menu Utenti: (1: Visualizza tutti gli utenti, 2: Elimina, 3: Ricerca Utente, 0: Torna indietro)");
-            int scelta = scanner.nextInt();
+            System.out.println("Menu Utenti:\n1: Visualizza tutti gli utenti\n2: Elimina\n3: Ricerca Utente\n0: Torna indietro");            int scelta = scanner.nextInt();
             scanner.nextLine();
 
             switch (scelta) {
@@ -45,11 +44,11 @@ public class MenuUtenti {
                             } else {
                                 System.out.println("Utente non trovato con ID: " + idUtente);
                             }
-                            break; // Esci dal ciclo se l'operazione è completata
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore durante l'eliminazione dell'utente: " + e.getMessage());
                         }
@@ -77,11 +76,11 @@ public class MenuUtenti {
                             } else {
                                 System.out.println("Nessun utente trovato con ID: " + idUtentee);
                             }
-                            break; // Esci dal ciclo se l'operazione è completata
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore durante la ricerca dell'utente: " + e.getMessage());
                         }

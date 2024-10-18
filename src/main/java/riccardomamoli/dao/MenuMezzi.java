@@ -163,7 +163,7 @@ public class MenuMezzi {
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore durante la ricerca del mezzo: " + e.getMessage());
                         }
@@ -173,22 +173,21 @@ public class MenuMezzi {
                 case 4:
                     while (true) {
                         try {
-                            // Verifica dello stato di un mezzo
                             System.out.println("Inserisci l'ID del mezzo per verificare lo stato (o 0 per tornare al menu principale):");
                             long idStato = scanner.nextLong();
                             scanner.nextLine();
 
                             if (idStato == 0) {
                                 System.out.println("Tornando al menu principale...");
-                                break; // Esci dal ciclo per tornare al menu principale
+                                break;
                             }
 
                             mdao.statoMezzo(idStato);
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore durante la verifica dello stato del mezzo: " + e.getMessage());
                         }
@@ -197,14 +196,13 @@ public class MenuMezzi {
                 case 5:
                     while (true) {
                         try {
-                            // Cambia lo stato del Mezzo
                             System.out.println("Inserisci l'ID del mezzo per cambiare lo stato (o 0 per tornare al menu principale):");
                             long idCambiaStato = scanner.nextLong();
                             scanner.nextLine();
 
                             if (idCambiaStato == 0) {
                                 System.out.println("Tornando al menu principale...");
-                                break; // Esci dal ciclo per tornare al menu principale
+                                break;
                             }
 
                             Mezzo mezzo = mdao.ricercoMezzo(idCambiaStato);
@@ -224,11 +222,11 @@ public class MenuMezzi {
                             } else {
                                 System.out.println("Mezzo non trovato per ID: " + idCambiaStato);
                             }
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore: " + e.getMessage());
                         }
@@ -238,14 +236,13 @@ public class MenuMezzi {
                 case 6:
                     while (true) {
                         try {
-                            // Trova le tratte percorse da un mezzo
                             System.out.println("Inserisci l'ID del mezzo per trovare le tratte percorse (o 0 per tornare al menu principale):");
                             long idMezz = scanner.nextLong();
                             scanner.nextLine();
 
                             if (idMezz == 0) {
                                 System.out.println("Tornando al menu principale...");
-                                break; // Esci dal ciclo per tornare al menu principale
+                                break;
                             }
 
                             List<TrattaPercorsa> trattePercorse = mdao.trovaTrattePercorse(idMezz);
@@ -257,11 +254,11 @@ public class MenuMezzi {
                             } else {
                                 System.out.println("Nessuna tratta percorsa trovata per il mezzo con ID: " + idMezz);
                             }
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore: " + e.getMessage());
                         }
@@ -271,19 +268,18 @@ public class MenuMezzi {
                 case 7:
                     while (true) {
                         try {
-                            // Conta le tratte percorse da un mezzo
                             System.out.println("Inserisci l'ID del mezzo per contare le tratte percorse (o 0 per tornare al menu principale):");
                             long idMezzoo = scanner.nextLong();
                             scanner.nextLine();
 
                             if (idMezzoo == 0) {
                                 System.out.println("Tornando al menu principale...");
-                                break; // Esci dal ciclo per tornare al menu principale
+                                break;
                             }
 
                             long numeroTratte = mdao.countTratteInPeriod(idMezzoo);
                             System.out.println("Il numero di tratte percorse dal mezzo con ID " + idMezzoo + " è: " + numeroTratte);
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
@@ -297,7 +293,6 @@ public class MenuMezzi {
                 case 8:
                     while (true) {
                         try {
-                            // Calcola il tempo effettivo delle tratte
                             System.out.println("Inserisci l'ID del mezzo (o 0 per tornare al menu principale):");
                             long idMez = scanner.nextLong();
                             scanner.nextLine();
@@ -335,14 +330,13 @@ public class MenuMezzi {
                 case 9:
                     while (true) {
                         try {
-                            // Calcola il tempo medio effettivo di percorrenza
                             System.out.println("Inserisci l'ID del mezzo (o 0 per tornare al menu principale):");
                             long idMezzooo = scanner.nextLong();
                             scanner.nextLine();
 
                             if (idMezzooo == 0) {
                                 System.out.println("Tornando al menu principale...");
-                                break; // Esci dal ciclo per tornare al menu principale
+                                break;
                             }
 
                             System.out.println("Inserisci l'ID della tratta:");
@@ -352,11 +346,11 @@ public class MenuMezzi {
                             double tempoMedio = mdao.calcolaTempoMedioEffettivo(idMezzooo, idTrattaa);
                             System.out.println("Il tempo medio effettivo di percorrenza per la tratta con ID " + idTrattaa + " e mezzo con ID " + idMezzooo + " è: " + tempoMedio + " minuti");
 
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore: " + e.getMessage());
                         }

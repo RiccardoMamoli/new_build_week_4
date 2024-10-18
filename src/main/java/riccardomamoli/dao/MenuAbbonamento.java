@@ -43,11 +43,11 @@ public class MenuAbbonamento {
                             } else {
                                 System.out.println("Nessun abbonamento trovato con ID: " + abbonamentoId);
                             }
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore durante la rimozione dell'abbonamento: " + e.getMessage());
                         }
@@ -87,11 +87,11 @@ public class MenuAbbonamento {
                                             ", Prezzo: " + abbonamento.getPrezzo());
                                 }
                             }
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (DateTimeParseException e) {
                             System.out.println("Formato data non valido. Assicurati di usare il formato yyyy-MM-dd.");
                         } catch (Exception e) {
@@ -105,7 +105,7 @@ public class MenuAbbonamento {
                         try {
                             System.out.println("Inserisci l'ID dell'abbonamento di cui desideri visualizzare i dettagli (o 0 per tornare indietro):");
                             long abbonamentooId = scanner.nextLong();
-                            scanner.nextLine(); // Pulisce il buffer
+                            scanner.nextLine();
 
                             if (abbonamentooId == 0) {
                                 System.out.println("Tornando al menu principale...");
@@ -113,11 +113,11 @@ public class MenuAbbonamento {
                             }
 
                             adao.printAbbonamentoDetails(abbonamentooId);
-                            break; // Esci dal ciclo se tutto va bene
+                            break;
 
                         } catch (InputMismatchException e) {
                             System.out.println("Input non valido. Per favore, inserisci un numero intero.");
-                            scanner.nextLine(); // Pulisci l'input errato
+                            scanner.nextLine();
                         } catch (Exception e) {
                             System.out.println("Errore durante la visualizzazione dei dettagli dell'abbonamento: " + e.getMessage());
                         }
