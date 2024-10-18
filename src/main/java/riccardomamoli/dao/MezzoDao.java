@@ -77,5 +77,33 @@ public class MezzoDao {
         return query.getResultList();
     }
 
+    //metodo per conteggio tratte di un mezzo
+    public long countTratteInPeriod(Long id_Mezzo) {
+        String jpql = "SELECT COUNT(t) FROM TrattaPercorsa t WHERE t.mezzo.id = :id_Mezzo ";
+        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+        query.setParameter("id_Mezzo", id_Mezzo);
+        return query.getSingleResult();
+    }
+
+    // Calcola il tempo effettivo delle tratte
+    public List<Integer> getTempiEffettivi(Long idMezzo, Long idTratta) {
+        String jpql = "SELECT t.orarioEffettivo FROM TrattaPercorsa t WHERE t.mezzo.id = :idMezzo AND t.tratta.id = :idTratta";
+        TypedQuery<Integer> query = em.createQuery(jpql, Integer.class);
+        query.setParameter("idMezzo", idMezzo);
+        query.setParameter("idTratta", idTratta);
+        return query.getResultList();
+    }
+
+    // Calcola il tempo medio effettivo di percorrenza
+    public double calcolaTempoMedioEffettivo(Long idMezzo, Long idTratta) {
+        String jpql = "SELECT AVG(t.orarioEffettivo) FROM TrattaPercorsa t WHERE t.mezzo.id = :idMezzo AND t.tratta.id = :idTratta";
+        TypedQuery<Double> query = em.createQuery(jpql, Double.class);
+        query.setParameter("idMezzo", idMezzo);
+        query.setParameter("idTratta", idTratta);
+        Double tempoMedio = query.getSingleResult();
+        return tempoMedio != null ? tempoMedio : 0.0;
+    }
+
+
 
 }

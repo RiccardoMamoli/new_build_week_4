@@ -3,8 +3,6 @@ package riccardomamoli.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import riccardomamoli.entities.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 public class PuntoVenditaDao {
@@ -14,21 +12,12 @@ public class PuntoVenditaDao {
         this.em = em;
     }
 
-    // Aggiungi distributore
     public void addPuntoVendita(PuntoVendita puntoVendita) {
         em.getTransaction().begin();
         em.persist(puntoVendita);
         em.getTransaction().commit();
     }
 
-    // Aggiungi biglietto
-    public void addBiglietto(Biglietto biglietto) {
-        em.getTransaction().begin();
-        em.persist(biglietto);
-        em.getTransaction().commit();
-    }
-
-    // Rimuovi un distributore
     public void deletePuntoVendita(long id_distributore) throws Exception {
         em.getTransaction().begin();
         PuntoVendita distributore = em.find(PuntoVendita.class, id_distributore);
@@ -40,7 +29,7 @@ public class PuntoVenditaDao {
         em.getTransaction().commit();
     }
 
-    // Cerca distributore tramite id
+
     public PuntoVendita ricercaPuntovendita(long id_Distributore) throws Exception {
         PuntoVendita trovato = em.find(PuntoVendita.class, id_Distributore);
         if (trovato == null) {
@@ -49,33 +38,17 @@ public class PuntoVenditaDao {
         return trovato;
     }
 
-    // Lista biglietti per lasso di tempo
-    public List<Biglietto> trovaBiglietti(long distributoreId, LocalDate start, LocalDate end) {
-        String queryStr = "SELECT b FROM Biglietto b WHERE b.puntoVendita.id = :distributoreId AND b.data_emissione BETWEEN :start AND :end";
-        TypedQuery<Biglietto> query = em.createQuery(queryStr, Biglietto.class);
-        query.setParameter("distributoreId", distributoreId);
-        query.setParameter("start", start);
-        query.setParameter("end", end);
-        return query.getResultList();
-    }
-    // Lista Abbonamenti per lasso di tempo
-    public List<Abbonamento> trovaAbbonamenti(long distributoreId, LocalDate start, LocalDate end) {
-        String queryStr = "SELECT a FROM Abbonamento a WHERE a.puntoVendita.id = :distributoreId AND a.data_emmissione BETWEEN :start AND :end";
-        TypedQuery<Abbonamento> query = em.createQuery(queryStr, Abbonamento.class);
-        query.setParameter("distributoreId", distributoreId);
-        query.setParameter("start", start);
-        query.setParameter("end", end);
-        return query.getResultList();
-    }
 
-    // Ricerca attivo/nonAttivo Distributore
-    public boolean isActive(long id) {
+
+    public Boolean isActive(long id) {
         PuntoVendita distributore = em.find(PuntoVendita.class, id);
-        return distributore instanceof DistributoreAutomatico && ((DistributoreAutomatico) distributore).isAttivo();
+        if (distributore instanceof DistributoreAutomatico) {
+            return ((DistributoreAutomatico) distributore).isAttivo();
+        }
+        return null;
     }
 
 
-    // switch attivo/ non distributore
     public void updateActive(long id, boolean active) {
         em.getTransaction().begin();
 
@@ -87,6 +60,8 @@ public class PuntoVenditaDao {
         em.merge(distributore);
         em.getTransaction().commit();
     }
+
+    
     public PuntoVendita findById(long id) {
         PuntoVendita puntoVenditaTrovato = em.find(PuntoVendita.class, id);
         return puntoVenditaTrovato;

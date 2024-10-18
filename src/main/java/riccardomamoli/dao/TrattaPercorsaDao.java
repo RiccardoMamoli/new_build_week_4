@@ -1,9 +1,13 @@
 package riccardomamoli.dao;
 
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
-import riccardomamoli.entities.*;
+import riccardomamoli.entities.Autobus;
+import riccardomamoli.entities.StatusMezzo;
+import riccardomamoli.entities.Tratta;
+import riccardomamoli.entities.TrattaPercorsa;
 
 import java.util.List;
 
@@ -43,6 +47,7 @@ public class TrattaPercorsaDao {
 
     public void addTrattaPercorsa(TrattaPercorsa trattaPercorsa) {
         EntityTransaction tx = em.getTransaction();
+        tx.begin();
 
         TypedQuery<TrattaPercorsa> query = em.createQuery("SELECT tp FROM TrattaPercorsa tp WHERE tp.mezzo.id = :mezzoId AND tp.tratta.id = :trattaId ORDER BY tp.orarioArrivo DESC", TrattaPercorsa.class);
         query.setParameter("mezzoId", trattaPercorsa.getMezzo().getId_Mezzo());
@@ -51,11 +56,10 @@ public class TrattaPercorsaDao {
         List<TrattaPercorsa> risultati = query.setMaxResults(1).getResultList();
 
         if (!risultati.isEmpty()) {
-            TrattaPercorsa ultimaTrattaPerc = risultati.get(0);
+            TrattaPercorsa ultimaTrattaPerc = risultati.getFirst();
 
-            if (trattaPercorsa.getOrarioPartenza().isBefore(ultimaTrattaPerc.getOrarioArrivo()) ||
-                    trattaPercorsa.getOrarioPartenza().equals(ultimaTrattaPerc.getOrarioArrivo())) {
-                throw new IllegalArgumentException("Errore: l'orario di partenza della nuova tratta non può essere prima o uguale all'orario di arrivo dell'ultima tratta.");
+            if (trattaPercorsa.getOrarioPartenza().isBefore(ultimaTrattaPerc.getOrarioArrivo())){
+                throw new IllegalArgumentException("Errore: l'orario di partenza della nuova tratta non può essere prima dell'orario di arrivo dell'ultima tratta.");
             }
 
             if (trattaPercorsa.getOrarioArrivo().isBefore(trattaPercorsa.getOrarioPartenza())) {
@@ -63,7 +67,6 @@ public class TrattaPercorsaDao {
             }
         }
 
-        tx.begin();
         em.persist(trattaPercorsa);
         tx.commit();
     }
@@ -93,30 +96,27 @@ public class TrattaPercorsaDao {
         }
     }
 
-    public void printMezziPerTratta (int trattaId) {
-        TypedQuery<Mezzo> query = em.createQuery("SELECT m FROM Mezzo m JOIN TrattaPercorsa tp ON m.id = tp.mezzo.id WHERE tp.tratta.id = :trattaId", Mezzo.class);
+    public void printFascePerTratta(Tratta trattaSelezionata) {
+        long trattaId = trattaSelezionata.getId_tratta();
+        TypedQuery<TrattaPercorsa> query = em.createQuery("SELECT tp FROM TrattaPercorsa tp WHERE tp.tratta.id = :trattaId", TrattaPercorsa.class);
         query.setParameter("trattaId", trattaId);
 
-        List<Mezzo> mezzi = query.getResultList();
+        List<TrattaPercorsa> fasceOrarie = query.getResultList();
 
-        if (!mezzi.isEmpty()) {
-
-            String tipologia;
-            for (Mezzo mezzo : mezzi) {
-                if(mezzo instanceof Autobus) {
-                    tipologia = "Autobus";
-                } else {
-                    tipologia = "Tram";
-                }
-                System.out.println("Mezzo ID: " + mezzo.getId_Mezzo());;
-                System.out.println("Tipologia: " + tipologia);
-                System.out.println("Capacità: " + mezzo.getCapienza());
-
+        if (!fasceOrarie.isEmpty()) {
+            for (TrattaPercorsa trattaPercorsa : fasceOrarie) {
+                System.out.println(" ");
+                System.out.println((trattaPercorsa.getMezzo() instanceof Autobus ? "Autobus" : "Tram") + " numero " + trattaPercorsa.getMezzo().getId_Mezzo());
+                System.out.println("Orario di partenza: " + trattaPercorsa.getOrarioPartenza());
+                System.out.println("Orario di arrivo: " + trattaPercorsa.getOrarioArrivo());
+                System.out.println("Capacità: " + trattaPercorsa.getMezzo().getCapienza());
+                System.out.println(" ");
             }
         } else {
-            System.out.println("Nessun mezzo associato alla tratta con ID " + trattaId);
+            System.out.println("Nessuna fascia oraria associata alla tratta con ID " + trattaId);
         }
     }
+
 
 
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Entity
 @Table(name = "abbonamento")
@@ -17,6 +19,10 @@ public class Abbonamento {
     @ManyToOne
     @JoinColumn(name = "id_punto_vendita", nullable = false)
     private PuntoVendita puntoVendita;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tessera", nullable = false)
+    private Tessera tessera;
 
     @OneToMany(mappedBy = "abbonamento")
     private List<TrattaAbbonamento> trattaAbbonamenti;
@@ -39,13 +45,38 @@ public class Abbonamento {
     public Abbonamento() {
     }
 
-    public Abbonamento(PuntoVendita puntoVendita, long codice_univoco_abbonamento, LocalDate data_emmissione, LocalDate data_scadenza, TipologiaAbbonamento tipologia_abbonamento, double prezzo) {
+    public Abbonamento(PuntoVendita puntoVendita, Tessera tessera, LocalDate data_emmissione, LocalDate data_scadenza, TipologiaAbbonamento tipologia_abbonamento) {
         this.puntoVendita = puntoVendita;
-        this.codice_univoco_abbonamento = codice_univoco_abbonamento;
+        this.tessera = tessera;
+        this.codice_univoco_abbonamento = generaCodice();
         this.data_emmissione = data_emmissione;
         this.data_scadenza = data_scadenza;
         this.tipologia_abbonamento = tipologia_abbonamento;
-        this.prezzo = prezzo;
+        this.prezzo = definisciPrezzi();
+    }
+
+    private long generaCodice() {
+        Random random = new Random();
+        return 100000 + random.nextInt(900000);
+    }
+
+    public double definisciPrezzi() {
+        switch (this.tipologia_abbonamento) {
+            case MENSILE:
+                return 30.0;
+            case SETTIMANALE:
+                return 10.0;
+            default:
+                return 0.0;
+        }
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
     public long getId_abbonamento() {
@@ -91,6 +122,10 @@ public class Abbonamento {
     public void setTipologia_abbonamento(TipologiaAbbonamento tipologia_abbonamento) {
         this.tipologia_abbonamento = tipologia_abbonamento;
     }
+    public boolean isValido() {
+        // Controlla se la data di scadenza è dopo la data attuale
+        return LocalDate.now().isBefore(data_scadenza) || LocalDate.now().isEqual(data_scadenza);
+    }
 
     public double getPrezzo() {
         return prezzo;
@@ -105,6 +140,8 @@ public class Abbonamento {
         return "Abbonamento{" +
                 "id_abbonamento=" + id_abbonamento +
                 ", puntoVendita=" + puntoVendita +
+                ", tessera=" + tessera +
+                ", trattaAbbonamenti=" + trattaAbbonamenti +
                 ", codice_univoco_abbonamento=" + codice_univoco_abbonamento +
                 ", data_emmissione=" + data_emmissione +
                 ", data_scadenza=" + data_scadenza +
