@@ -7,7 +7,6 @@ import riccardomamoli.entities.Abbonamento;
 import riccardomamoli.entities.Tessera;
 import riccardomamoli.entities.Utente;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -99,7 +98,7 @@ public class UtenteDao{
         System.out.println(" ");
     }
 
-    public List<Abbonamento> trovaStoricoAbbonamenti(Tessera tessera) {
+    public void trovaStoricoAbbonamenti(Tessera tessera) {
         TypedQuery<Abbonamento> query = em.createQuery("SELECT a FROM Abbonamento a WHERE a.tessera = :tessera ORDER BY a.data_emmissione ASC", Abbonamento.class);
         query.setParameter("tessera", tessera);
         List<Abbonamento> storicoAbbonamenti = query.getResultList();
@@ -113,7 +112,6 @@ public class UtenteDao{
             System.out.println("Tipologia: " + abbonamento.getTipologia_abbonamento());
         }
 
-        return storicoAbbonamenti;
     }
 
 

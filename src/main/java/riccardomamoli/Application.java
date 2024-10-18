@@ -33,9 +33,8 @@ public class Application {
         StatusMezzoDao sdao = new StatusMezzoDao(em);
         TrattaPercorsaDao tpdao = new TrattaPercorsaDao(em);
 
-        /*
 
-
+/*
         Utente utente1 = new Utente("Franco", "Rossi", TipologiaUtente.UNDER25, LocalDate.of(2000, 10, 3));
         Utente utente2 = new Utente("Mattia", "Gonnola", TipologiaUtente.OVER60, LocalDate.of(1890, 2, 4));
         Utente utente3 = new Utente("Giacomo", "Guidotti", TipologiaUtente.UNDER18, LocalDate.of(2007, 11, 9));
@@ -43,51 +42,61 @@ public class Application {
         udao.addUtente(utente2);
         udao.addUtente(utente3);
 
-         */
+ */
 
-        /*
+
+
+
 
         PuntoVendita p1 = new DistributoreAutomatico(true);
         PuntoVendita p2 = new DistributoreFisico();
         PuntoVendita p3 = new DistributoreAutomatico(false);
-        pdao.addPuntoVendita(p3);
-        pdao.addPuntoVendita(p2);
-        pdao.addPuntoVendita(p1);
+         // pdao.addPuntoVendita(p3);
+         //pdao.addPuntoVendita(p2);
+         //pdao.addPuntoVendita(p1);
 
-         */
-
-
-
-        Abbonamento abbonamentoProva = new Abbonamento();
-
-        LocalDate dataRilascio = LocalDate.now();
-        LocalDate dataScadenza = dataRilascio.plusYears(1);
-        //adao.addAbbonamento(abb1);
 
 
         Mezzo mezzo1 = new Autobus(70, StatoMezzo.IN_SERVIZIO);
         Mezzo mezzo2 = new Tram(80, StatoMezzo.MANUTENZIONE);
         Mezzo mezzo3 = new Autobus(100, StatoMezzo.IN_SERVIZIO);
-        // mdao.creazioneMezzo(mezzo1);
-        // mdao.creazioneMezzo(mezzo2);
-        // mdao.creazioneMezzo(mezzo3);
+         //mdao.creazioneMezzo(mezzo1);
+          //mdao.creazioneMezzo(mezzo2);
 
-        // Mezzo mezzoid1 = mdao.ricercoMezzo(1);
-        // Mezzo mezzoid2 = mdao.ricercoMezzo(2);
 
-        // StatusMezzo statusMezzo1 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2018, 12, 10), LocalDate.of(2018, 12, 20), mezzoid1);
-        // StatusMezzo statusMezzo2 = new StatusMezzo(StatoMezzo.MANUTENZIONE, LocalDate.of(2019, 10, 20), LocalDate.of(2019, 10, 25), mezzoid2);
-        // StatusMezzo statusMezzo3 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2020, 1, 10), LocalDate.now(), mezzoid2);
-        // StatusMezzo statusMezzo4 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2024, 10, 18), LocalDate.now(), mezzoid2);
 
-        //sdao.addStatusMezzo(statusMezzo1);
-        //sdao.addStatusMezzo(statusMezzo2);
-        //sdao.addStatusMezzo(statusMezzo3);
-        //sdao.addStatusMezzo(statusMezzo4);
+         Mezzo mezzoid1 = mdao.ricercoMezzo(1);
+         Mezzo mezzoid2 = mdao.ricercoMezzo(2);
 
-         // Tratta tratta1 = trdao.findById(11);
-          // Tratta tratta2 = trdao.findById(12);
-/*
+
+
+
+         StatusMezzo statusMezzo1 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2018, 12, 10), LocalDate.of(2018, 12, 20), mezzoid1);
+         StatusMezzo statusMezzo2 = new StatusMezzo(StatoMezzo.MANUTENZIONE, LocalDate.of(2019, 10, 20), LocalDate.of(2019, 10, 25), mezzoid2);
+         StatusMezzo statusMezzo3 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2020, 1, 10), LocalDate.now(), mezzoid2);
+         StatusMezzo statusMezzo4 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2024, 10, 18), LocalDate.now(), mezzoid2);
+
+         // sdao.addStatusMezzo(statusMezzo1);
+         // sdao.addStatusMezzo(statusMezzo2);
+         // sdao.addStatusMezzo(statusMezzo3);
+         // sdao.addStatusMezzo(statusMezzo4);
+
+
+
+        Tratta tratta3 = new Tratta("Reggio Emilia", "Modena", 20,20);
+        Tratta tratta4 = new Tratta("Parma", "Milano Centrale", 60,40);
+        Tratta tratta5 = new Tratta("Bologna", "Napoli", 280,90);
+         // trdao.addTratta(tratta3);
+         // trdao.addTratta(tratta4);
+         // trdao.addTratta(tratta5);
+
+
+
+
+
+       Tratta tratta1 = trdao.findById(4);
+       Tratta tratta2 = trdao.findById(5);
+
         TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
         TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
         TrattaPercorsa FasciaOraria3 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
@@ -97,13 +106,20 @@ public class Application {
         TrattaPercorsa FasciaOraria6 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
 
 
- */
-        // tpdao.addTrattaPercorsa(FasciaOraria1);
-        // tpdao.addTrattaPercorsa(FasciaOraria2);
-        // tpdao.addTrattaPercorsa(FasciaOraria3);
-        // tpdao.addTrattaPercorsa(FasciaOraria4);
+
+
+
+
+       // tpdao.addTrattaPercorsa(FasciaOraria1);
+       // tpdao.addTrattaPercorsa(FasciaOraria2);
+       //  tpdao.addTrattaPercorsa(FasciaOraria3);
+       //  tpdao.addTrattaPercorsa(FasciaOraria4);
         // tpdao.addTrattaPercorsa(FasciaOraria5);
-        // tpdao.addTrattaPercorsa(FasciaOraria6);
+       //  tpdao.addTrattaPercorsa(FasciaOraria6);
+
+
+
+
 
         Scanner scanner = new Scanner(System.in);
 
@@ -160,6 +176,7 @@ public class Application {
 
                                             int sceltaTratta = scanner.nextInt();
                                             scanner.nextLine();
+                                            Biglietto biglietto1 = null;
 
                                             Tratta trattaSelezionata = null;
                                             if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
@@ -170,15 +187,22 @@ public class Application {
                                                 System.out.println(" ");
 
                                                 puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita - 1);
-                                                Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
+                                                biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
                                                 bdao.addBiglietto(biglietto1, trattaSelezionata);
                                             }
 
                                             System.out.println(" ");
                                             System.out.println("A che ora vorresti partire?");
                                             System.out.println(" ");
-                                            tpdao.printFascePerTratta(trattaSelezionata);
-
+                                            assert trattaSelezionata != null;
+                                            List<TrattaPercorsa> fasceDisponibili = tpdao.printFascePerTratta(trattaSelezionata);
+                                            int sceltaFascia = scanner.nextInt();
+                                            scanner.nextLine();
+                                            if (sceltaFascia >= 1 && sceltaFascia <= fasceDisponibili.size()) {
+                                                TrattaPercorsa trattaPercorsa = fasceDisponibili.get(sceltaFascia - 1);
+                                                biglietto1.setTimbrato(true);
+                                                System.out.println("Hai selezionato la fascia oraria " + trattaPercorsa.getOrarioPartenza() + "-" + trattaPercorsa.getOrarioArrivo() + ". Il tuo biglietto è stato timbrato!");
+                                            }
                                             break;
 
 
@@ -337,7 +361,7 @@ public class Application {
 
                                                                                     case 2:
                                                                                         System.out.println("Scelta ricevuta Prima: " + sceltaStampaUtente2);
-                                                                                        udao.trovaStoricoAbbonamenti(nuovaTessera);
+                                                                                         udao.trovaStoricoAbbonamenti(nuovaTessera);
                                                                                         System.out.println("Scelta ricevuta Dopo: " + sceltaStampaUtente2);
                                                                                         break;
 
@@ -499,15 +523,18 @@ public class Application {
                                                                 case 2:
                                                                     System.out.println("1) Stampa scheda utente");
                                                                     System.out.println("2) Stampa storico abbonamenti");
+                                                                    System.out.println("3) Torna al menu principale");
                                                                     int sceltaStampaUtente = scanner.nextInt();
                                                                     scanner.nextLine();
 
                                                                     if (sceltaStampaUtente == 1) {
                                                                         udao.printByUser(utente, nuovaTessera);
                                                                     } else if(sceltaStampaUtente == 2) {
-
+                                                                        udao.trovaStoricoAbbonamenti(nuovaTessera);
+                                                                    } else if (sceltaStampaUtente == 3) {
+                                                                        statoSelezioneMenu = true;
                                                                     } else {
-
+                                                                        System.out.println("Selezione non valida");
                                                                     }
                                                                     break;
 
@@ -525,7 +552,7 @@ public class Application {
                                                     statoSelezioneMenu = true;
                                                 }
                                             } else {
-                                                System.out.println("Inserisci una scelta valida.");
+                                                System.out.println("ID non trovato. Inserisci una scelta valida.");
                                             }
                                             break;
 
