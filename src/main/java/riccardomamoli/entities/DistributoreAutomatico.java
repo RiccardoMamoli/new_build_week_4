@@ -18,10 +18,12 @@ public class DistributoreAutomatico extends PuntoVendita {
     public DistributoreAutomatico() {
     }
 
-    public DistributoreAutomatico(List<Abbonamento> abbonamenti, List<Biglietto> biglietti, boolean attivo) {
-        super(abbonamenti, biglietti);
+   public DistributoreAutomatico(boolean attivo) {
+         // super(abbonamenti, biglietti);
         this.attivo = attivo;
     }
+
+
 
     public boolean isAttivo() {
         return attivo;
