@@ -166,7 +166,7 @@ public class MenuTratte {
 
                 case 5:
                     // Elenco di tutte le tratte
-                    System.out.print("Inserisci l'ID della tratta da consultare: ");
+                    System.out.print("Inserisci l'ID della tratta da consulftare: ");
                     long idDaConsultare = scanner.nextLong();
                     scanner.nextLine();
                     try {

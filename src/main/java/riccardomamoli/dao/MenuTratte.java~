@@ -15,8 +15,8 @@ public class MenuTratte {
                     "1: Crea Tratta\n" +
                     "2: Elimina Tratta\n" +
                     "3: Modifica Tratta\n" +
-                    "4: Consulta Tratta\n" +
-                    "5: Elenco Tratte\n" +
+                    "4: Elenco Tratte\n" +
+                    "5: Consulta Tratta\n"+
                     "0: Torna indietro");
 
             int scelta = scanner.nextInt();
@@ -152,6 +152,20 @@ public class MenuTratte {
 
                 case 4:
                     // Consultazione di una tratta
+                    try {
+                        List<Tratta> tratte = tdao.findAll();
+                        System.out.println("Elenco Tratte:");
+                        for (Tratta tratta : tratte) {
+                            System.out.printf("ID: %d, Zona Partenza: %s, Capolinea: %s%n",
+                                    tratta.getId_tratta(), tratta.getZonaPartenza(), tratta.getCapolinea());
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Errore durante il recupero dell'elenco delle tratte: " + e.getMessage());
+                    }
+                    break;
+
+                case 5:
+                    // Elenco di tutte le tratte
                     System.out.print("Inserisci l'ID della tratta da consultare: ");
                     long idDaConsultare = scanner.nextLong();
                     scanner.nextLine();
@@ -169,20 +183,6 @@ public class MenuTratte {
                         }
                     } catch (Exception e) {
                         System.out.println("Errore durante la consultazione della tratta: " + e.getMessage());
-                    }
-                    break;
-
-                case 5:
-                    // Elenco di tutte le tratte
-                    try {
-                        List<Tratta> tratte = tdao.findAll();
-                        System.out.println("Elenco Tratte:");
-                        for (Tratta tratta : tratte) {
-                            System.out.printf("ID: %d, Zona Partenza: %s, Capolinea: %s%n",
-                                    tratta.getId_tratta(), tratta.getZonaPartenza(), tratta.getCapolinea());
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Errore durante il recupero dell'elenco delle tratte: " + e.getMessage());
                     }
                     break;
 
