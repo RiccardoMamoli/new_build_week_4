@@ -3,6 +3,7 @@ package riccardomamoli.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,9 +20,9 @@ public class Tessera {
     @JoinColumn(name = "id_utente")
     private Utente utente;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "id_abbonamento")
-    private Abbonamento abbonamento;
+    private List<Abbonamento> storicoAbbonamenti ;
 
     @Column(name = "numero_tessera", unique = true)
     private String numero_tessera;
