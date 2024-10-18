@@ -63,14 +63,14 @@ public class Application {
         // mdao.creazioneMezzo(mezzo1);
         // mdao.creazioneMezzo(mezzo2);
         // mdao.creazioneMezzo(mezzo3);
-
-        Mezzo mezzoid1 = mdao.ricercoMezzo(1);
-        Mezzo mezzoid2 = mdao.ricercoMezzo(2);
-
-        StatusMezzo statusMezzo1 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2018, 12, 10), LocalDate.of(2018, 12, 20), mezzoid1);
-        StatusMezzo statusMezzo2 = new StatusMezzo(StatoMezzo.MANUTENZIONE, LocalDate.of(2019, 10, 20), LocalDate.of(2019, 10, 25), mezzoid2);
-        StatusMezzo statusMezzo3 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2020, 1, 10), LocalDate.now(), mezzoid2);
-        StatusMezzo statusMezzo4 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2024, 10, 18), LocalDate.now(), mezzoid2);
+//
+//        Mezzo mezzoid1 = mdao.ricercoMezzo(1);
+//        Mezzo mezzoid2 = mdao.ricercoMezzo(2);
+//
+//        StatusMezzo statusMezzo1 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2018, 12, 10), LocalDate.of(2018, 12, 20), mezzoid1);
+//        StatusMezzo statusMezzo2 = new StatusMezzo(StatoMezzo.MANUTENZIONE, LocalDate.of(2019, 10, 20), LocalDate.of(2019, 10, 25), mezzoid2);
+//        StatusMezzo statusMezzo3 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2020, 1, 10), LocalDate.now(), mezzoid2);
+//        StatusMezzo statusMezzo4 = new StatusMezzo(StatoMezzo.IN_SERVIZIO, LocalDate.of(2024, 10, 18), LocalDate.now(), mezzoid2);
 
         //sdao.addStatusMezzo(statusMezzo1);
         //sdao.addStatusMezzo(statusMezzo2);
@@ -79,14 +79,14 @@ public class Application {
 
         Tratta tratta1 = trdao.findById(11);
         Tratta tratta2 = trdao.findById(12);
-
-        TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
-        TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
-        TrattaPercorsa FasciaOraria3 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
-
-        TrattaPercorsa FasciaOraria4 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
-        TrattaPercorsa FasciaOraria5 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
-        TrattaPercorsa FasciaOraria6 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
+//
+//        TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
+//        TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
+//        TrattaPercorsa FasciaOraria3 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
+//
+//        TrattaPercorsa FasciaOraria4 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
+//        TrattaPercorsa FasciaOraria5 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
+//        TrattaPercorsa FasciaOraria6 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
 
         // tpdao.addTrattaPercorsa(FasciaOraria1);
         // tpdao.addTrattaPercorsa(FasciaOraria2);
@@ -198,8 +198,7 @@ public class Application {
                 if (emf != null && emf.isOpen()) {
                     emf.close();
                 }
-                scanner.close(); // Chiudi lo scanner
-                System.out.println("Risorse chiuse correttamente.");
+
             }
         }
     }
