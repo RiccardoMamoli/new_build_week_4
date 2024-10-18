@@ -3,6 +3,7 @@ package riccardomamoli.dao;
 import jakarta.persistence.EntityManager;
 import riccardomamoli.entities.Tratta;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuTratte {
@@ -14,7 +15,8 @@ public class MenuTratte {
                     "1: Crea Tratta\n" +
                     "2: Elimina Tratta\n" +
                     "3: Modifica Tratta\n" +
-                    "4: Consulta Tratta\n" +
+                    "4: Elenco Tratte\n" +
+                    "5: Consulta Tratta\n"+
                     "0: Torna indietro");
 
             int scelta = scanner.nextInt();
@@ -61,8 +63,6 @@ public class MenuTratte {
                     Tratta nuovaTratta = new Tratta(zonaPartenza, capolinea, tempoPrevisto, prezzo);
                     try {
                         tdao.addTratta(nuovaTratta);
-                        System.out.printf("La tratta %d con partenza da %s e capolinea %s è stata creata.%n",
-                                nuovaTratta.getId_tratta(), zonaPartenza, capolinea);
                         System.out.println("Tratta creata con successo.");
                     } catch (Exception e) {
                         System.out.println("Errore durante la creazione della tratta: " + e.getMessage());
@@ -152,6 +152,20 @@ public class MenuTratte {
 
                 case 4:
                     // Consultazione di una tratta
+                    try {
+                        List<Tratta> tratte = tdao.findAll();
+                        System.out.println("Elenco Tratte:");
+                        for (Tratta tratta : tratte) {
+                            System.out.printf("ID: %d, Zona Partenza: %s, Capolinea: %s%n",
+                                    tratta.getId_tratta(), tratta.getZonaPartenza(), tratta.getCapolinea());
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Errore durante il recupero dell'elenco delle tratte: " + e.getMessage());
+                    }
+                    break;
+
+                case 5:
+                    // Elenco di tutte le tratte
                     System.out.print("Inserisci l'ID della tratta da consultare: ");
                     long idDaConsultare = scanner.nextLong();
                     scanner.nextLine();
