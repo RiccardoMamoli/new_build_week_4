@@ -20,6 +20,10 @@ public class Abbonamento {
     @JoinColumn(name = "id_punto_vendita", nullable = false)
     private PuntoVendita puntoVendita;
 
+    @ManyToOne
+    @JoinColumn(name = "id_tessera", nullable = false)
+    private Tessera tessera;
+
     @OneToMany(mappedBy = "abbonamento")
     private List<TrattaAbbonamento> trattaAbbonamenti;
 
@@ -41,8 +45,9 @@ public class Abbonamento {
     public Abbonamento() {
     }
 
-    public Abbonamento(PuntoVendita puntoVendita, LocalDate data_emmissione, LocalDate data_scadenza, TipologiaAbbonamento tipologia_abbonamento) {
+    public Abbonamento(PuntoVendita puntoVendita, Tessera tessera, LocalDate data_emmissione, LocalDate data_scadenza, TipologiaAbbonamento tipologia_abbonamento) {
         this.puntoVendita = puntoVendita;
+        this.tessera = tessera;
         this.codice_univoco_abbonamento = generaCodice();
         this.data_emmissione = data_emmissione;
         this.data_scadenza = data_scadenza;
@@ -64,6 +69,14 @@ public class Abbonamento {
             default:
                 return 0.0;
         }
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
     public long getId_abbonamento() {
@@ -127,6 +140,8 @@ public class Abbonamento {
         return "Abbonamento{" +
                 "id_abbonamento=" + id_abbonamento +
                 ", puntoVendita=" + puntoVendita +
+                ", tessera=" + tessera +
+                ", trattaAbbonamenti=" + trattaAbbonamenti +
                 ", codice_univoco_abbonamento=" + codice_univoco_abbonamento +
                 ", data_emmissione=" + data_emmissione +
                 ", data_scadenza=" + data_scadenza +

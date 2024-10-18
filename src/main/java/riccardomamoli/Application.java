@@ -272,7 +272,8 @@ public class Application {
                                                                             LocalDate dataEmissioneAbbonamento = LocalDate.now();
                                                                             LocalDate dateScadenzaAbbonamento = dataEmissioneAbbonamento.plusDays(7);
                                                                             TipologiaAbbonamento tipoAbb = TipologiaAbbonamento.SETTIMANALE;
-                                                                            Abbonamento abbonamento = new Abbonamento(puntoVenditaselezionato, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
+                                                                            Abbonamento abbonamento = new Abbonamento(puntoVenditaselezionato, nuovaTessera, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
+                                                                            adao.addAbbonamento(abbonamento);
                                                                         }
                                                                     }
                                                                 } else {
@@ -300,7 +301,7 @@ public class Application {
                                                                             LocalDate dataEmissioneAbbonamento = LocalDate.now();
                                                                             LocalDate dateScadenzaAbbonamento = dataEmissioneAbbonamento.plusDays(30);
                                                                             TipologiaAbbonamento tipoAbb = TipologiaAbbonamento.MENSILE;
-                                                                            Abbonamento abbonamento = new Abbonamento(puntoVenditaselezionato, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
+                                                                            Abbonamento abbonamento = new Abbonamento(puntoVenditaselezionato, nuovaTessera, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
                                                                             adao.addAbbonamento(abbonamento);
                                                                         }
                                                                     }
