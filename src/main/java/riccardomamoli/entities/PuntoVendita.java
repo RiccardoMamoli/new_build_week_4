@@ -15,19 +15,22 @@ public abstract class PuntoVendita {
     @Column(name = "id_punto_vendita")
     private long id;
 
-    @OneToMany(mappedBy = "puntoVendita")
-    private List<Abbonamento> abbonamenti;
+     @OneToMany(mappedBy = "puntoVendita")
+     private List<Abbonamento> abbonamenti;
 
     @OneToMany(mappedBy = "puntoVendita")
     private List<Biglietto> biglietti;
 
     public PuntoVendita() {
     }
+/*
+   public PuntoVendita(List<Abbonamento> abbonamenti, List<Biglietto> biglietti) {
+         this.abbonamenti = abbonamenti;
+            this.biglietti = biglietti;
+     }
 
-    public PuntoVendita(List<Abbonamento> abbonamenti, List<Biglietto> biglietti) {
-        this.abbonamenti = abbonamenti;
-        this.biglietti = biglietti;
-    }
+ */
+
 
     public long getId() {
         return id;

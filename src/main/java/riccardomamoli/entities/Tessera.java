@@ -22,7 +22,10 @@ public class Tessera {
 
     @OneToMany
     @JoinColumn(name = "id_abbonamento")
-    private List<Abbonamento> storicoAbbonamenti ;
+    private List<Abbonamento> storicoAbbonamenti;
+
+    @OneToMany(mappedBy = "tessera")
+    private List<Abbonamento> storicoAbbonamentiDaTessera;
 
     @Column(name = "numero_tessera", unique = true)
     private String numero_tessera;
@@ -45,6 +48,14 @@ public class Tessera {
         this.data_rilascio = data_rilascio;
         this.data_scadenza = data_scadenza;
         this.attiva = attiva;
+    }
+
+    public List<Abbonamento> getStoricoAbbonamentiDaTessera() {
+        return storicoAbbonamentiDaTessera;
+    }
+
+    public void setStoricoAbbonamentiDaTessera(List<Abbonamento> storicoAbbonamentiDaTessera) {
+        this.storicoAbbonamentiDaTessera = storicoAbbonamentiDaTessera;
     }
 
     private String generaCodice() {
@@ -93,6 +104,14 @@ public class Tessera {
 
     public void setAttiva(boolean attiva) {
         this.attiva = attiva;
+    }
+
+    public List<Abbonamento> getStoricoAbbonamenti() {
+        return storicoAbbonamenti;
+    }
+
+    public void setStoricoAbbonamenti(List<Abbonamento> storicoAbbonamenti) {
+        this.storicoAbbonamenti = storicoAbbonamenti;
     }
 
     @Override
