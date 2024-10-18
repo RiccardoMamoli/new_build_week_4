@@ -30,6 +30,12 @@ public class AbbonamentoDao {
 
         em.getTransaction().begin();
         em.persist(abbonamento);
+        System.out.println("Abbonamento acquistato! Ecco il riepilogo: ");
+        System.out.println(" ");
+        System.out.println("ID Abbonamento: " + abbonamento.getId_abbonamento());
+        System.out.println("Data emmisione: " + abbonamento.getData_emmissione());
+        System.out.println("Data scadenza: " + abbonamento.getData_scadenza());
+        System.out.println("Tipologia di abbonamento: " + abbonamento.getTipologia_abbonamento());
         em.getTransaction().commit();
     }
 
@@ -71,12 +77,11 @@ public class AbbonamentoDao {
         if (abbonamento != null) {
             // Stampa i dettagli dell'abbonamento
             System.out.println("Dettagli dell'Abbonamento:");
+            System.out.println(" ");
             System.out.println("ID: " + abbonamento.getId_abbonamento());
             System.out.println("Codice Unico: " + abbonamento.getCodice_univoco_abbonamento());
             System.out.println("Data di Emissione: " + abbonamento.getData_emmissione());
             System.out.println("Validità: " + (abbonamento.isValido() ? "Sì" : "No"));
-
-            // Aggiungi ulteriori dettagli se necessario, come mezzo, punto vendita, tratta, ecc.
             System.out.println("Punto Vendita: " + abbonamento.getPuntoVendita());
             System.out.println("Tipologia: " + abbonamento.getTipologia_abbonamento());
         } else {

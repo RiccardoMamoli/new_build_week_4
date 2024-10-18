@@ -38,9 +38,8 @@ public class Tessera {
     public Tessera() {
     }
 
-    public Tessera(Utente utente, Abbonamento abbonamento, String numero_tessera, LocalDate data_rilascio, LocalDate data_scadenza, boolean attiva) {
+    public Tessera(Utente utente, LocalDate data_rilascio, LocalDate data_scadenza, boolean attiva) {
         this.utente = utente;
-        this.abbonamento = abbonamento;
         this.numero_tessera = generaCodice();
         this.data_rilascio = data_rilascio;
         this.data_scadenza = data_scadenza;
@@ -61,14 +60,6 @@ public class Tessera {
 
     public void setUtente(Utente utente) {
         this.utente = utente;
-    }
-
-    public Abbonamento getAbbonamento() {
-        return abbonamento;
-    }
-
-    public void setAbbonamento(Abbonamento abbonamento) {
-        this.abbonamento = abbonamento;
     }
 
     public String getNumero_tessera() {
@@ -108,7 +99,6 @@ public class Tessera {
         return "Tessera{" +
                 "id=" + id +
                 ", utente=" + utente +
-                ", abbonamento=" + abbonamento +
                 ", numero_tessera='" + numero_tessera + '\'' +
                 ", data_rilascio=" + data_rilascio +
                 ", data_scadenza=" + data_scadenza +

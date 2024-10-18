@@ -41,7 +41,6 @@ public class TrattaDao {
 
         TypedQuery<Tratta> query = em.createQuery("SELECT tr FROM Tratta tr", Tratta.class);
         List<Tratta> risultati = query.getResultList();
-        System.out.println(risultati.size());
 
         if (risultati.isEmpty()) {
             System.out.println("Non ci sono tratte disponibili.");

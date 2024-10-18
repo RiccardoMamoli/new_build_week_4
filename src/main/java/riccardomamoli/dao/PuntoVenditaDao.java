@@ -3,8 +3,6 @@ package riccardomamoli.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import riccardomamoli.entities.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 public class PuntoVenditaDao {
@@ -14,14 +12,12 @@ public class PuntoVenditaDao {
         this.em = em;
     }
 
-    // Aggiungi distributore
     public void addPuntoVendita(PuntoVendita puntoVendita) {
         em.getTransaction().begin();
         em.persist(puntoVendita);
         em.getTransaction().commit();
     }
 
-    // Rimuovi un distributore
     public void deletePuntoVendita(long id_distributore) throws Exception {
         em.getTransaction().begin();
         PuntoVendita distributore = em.find(PuntoVendita.class, id_distributore);
@@ -33,7 +29,7 @@ public class PuntoVenditaDao {
         em.getTransaction().commit();
     }
 
-    // Cerca distributore tramite id
+
     public PuntoVendita ricercaPuntovendita(long id_Distributore) throws Exception {
         PuntoVendita trovato = em.find(PuntoVendita.class, id_Distributore);
         if (trovato == null) {
@@ -43,7 +39,7 @@ public class PuntoVenditaDao {
     }
 
 
-    // Ricerca attivo/nonAttivo Distributore
+
     public Boolean isActive(long id) {
         PuntoVendita distributore = em.find(PuntoVendita.class, id);
         if (distributore instanceof DistributoreAutomatico) {
@@ -53,7 +49,6 @@ public class PuntoVenditaDao {
     }
 
 
-    // switch attivo/ non distributore
     public void updateActive(long id, boolean active) {
         em.getTransaction().begin();
 
@@ -75,7 +70,6 @@ public class PuntoVenditaDao {
     public List<PuntoVendita> findAll() {
         TypedQuery<PuntoVendita> query = em.createQuery("SELECT pv FROM PuntoVendita pv", PuntoVendita.class);
         List<PuntoVendita> risultati = query.getResultList();
-        System.out.println("Lunghezza pV = " + risultati.size());
 
         if (risultati.isEmpty()) {
             System.out.println("Non ci sono punti vendita disponibili.");

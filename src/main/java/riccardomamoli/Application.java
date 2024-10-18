@@ -52,10 +52,8 @@ public class Application {
 
         LocalDate dataRilascio = LocalDate.now();
         LocalDate dataScadenza = dataRilascio.plusYears(1);
-        Abbonamento abb1 = new Abbonamento(p1, 243545, dataRilascio, dataScadenza, TipologiaAbbonamento.MENSILE, 30);
         //adao.addAbbonamento(abb1);
 
-        Tessera tessera1 = new Tessera(utente1, abb1, "145sf346", dataRilascio, dataScadenza, true);
 
         Mezzo mezzo1 = new Autobus(70, StatoMezzo.IN_SERVIZIO);
         Mezzo mezzo2 = new Tram(80, StatoMezzo.MANUTENZIONE);
@@ -109,7 +107,7 @@ public class Application {
                     scanner.nextLine();
 
                     if (scelta == 0) {
-                        break; // Esci dal ciclo
+                        break;
                     }
 
                     switch (scelta) {
@@ -131,74 +129,232 @@ public class Application {
                                 System.out.println(" ");
                                 System.out.println("1: Apri Menù Biglietto");
                                 System.out.println("2: Apri Menù Abbonamento");
+                                System.out.println("3: Torna al Menù principale");
                                 System.out.println(" ");
                                 int acquisto = scanner.nextInt();
                                 scanner.nextLine();
 
-                                switch (acquisto) {
-                                    case 1:
 
-                                        System.out.println("Hai scelto il menu biglietto. Quale tratta vorresti percorrere?");
-                                        System.out.println(" ");
+                                boolean statoSelezioneMenu = false;
+                                PuntoVendita puntoVenditaselezionato = null;
+                                while (!statoSelezioneMenu) {
+                                    switch (acquisto) {
+                                        case 1:
 
-                                        List<Tratta> listaTratte = trdao.findAll();
-
-                                        int sceltaTratta = scanner.nextInt();
-                                        scanner.nextLine();
-
-                                        Tratta trattaSelezionata = null;
-                                        if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
-                                            System.out.println("Hai selezionato la tratta numero " + sceltaTratta);
-                                            System.out.println(" ");
-                                            trattaSelezionata = listaTratte.get(sceltaTratta - 1);
-                                            System.out.println("Il prezzo del biglietto per questa tratta è " + trattaSelezionata.getPrezzo());
+                                            System.out.println("Hai scelto il menu biglietto. Quale tratta vorresti percorrere?");
                                             System.out.println(" ");
 
-                                            PuntoVendita puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita - 1);
-                                            Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
-                                            bdao.addBiglietto(biglietto1, trattaSelezionata);
-                                        }
+                                            List<Tratta> listaTratte = trdao.findAll();
 
-                                        System.out.println(" ");
-                                        System.out.println("A che ora vorresti partire?");
-                                        System.out.println(" ");
-                                        tpdao.printFascePerTratta(trattaSelezionata);
+                                            int sceltaTratta = scanner.nextInt();
+                                            scanner.nextLine();
 
-                                        break;
-                                    case 2:
-                                        System.out.println("Hai scelto di acquistare un abbonamento.");
-                                        // Logica per mostrare biglietti
-                                        break;
-                                    default:
-                                        System.out.println("Operazione non valida.");
+                                            Tratta trattaSelezionata = null;
+                                            if (sceltaTratta >= 1 && sceltaTratta <= listaTratte.size()) {
+                                                System.out.println("Hai selezionato la tratta numero " + sceltaTratta);
+                                                System.out.println(" ");
+                                                trattaSelezionata = listaTratte.get(sceltaTratta - 1);
+                                                System.out.println("Il prezzo del biglietto per questa tratta è " + trattaSelezionata.getPrezzo());
+                                                System.out.println(" ");
+
+                                                puntoVenditaselezionato = listaPuntiVendita.get(sceltaPuntoVendita - 1);
+                                                Biglietto biglietto1 = new Biglietto(puntoVenditaselezionato, trattaSelezionata, LocalDate.now(), false);
+                                                bdao.addBiglietto(biglietto1, trattaSelezionata);
+                                            }
+
+                                            System.out.println(" ");
+                                            System.out.println("A che ora vorresti partire?");
+                                            System.out.println(" ");
+                                            tpdao.printFascePerTratta(trattaSelezionata);
+
+                                            break;
+
+
+                                        case 2:
+                                            System.out.println(" ");
+                                            System.out.println("Hai scelto il menu abbonamento.");
+                                            System.out.println(" ");
+                                            System.out.println("Possiedi gia un tessera cliente? (y/n)");
+                                            System.out.println(" ");
+                                            String sceltaPossedimento = scanner.nextLine();
+                                            if (sceltaPossedimento.equals("y")) {
+                                                System.out.println("Inserisci numero di tessera");
+                                                int numeroTessera = scanner.nextInt();
+
+                                            } else if (sceltaPossedimento.equals("n")) {
+                                                System.out.println("Vuoi crearne una ora? (y/n)");
+                                                String sceltaCreaTessera = scanner.nextLine();
+                                                if (sceltaCreaTessera == "y") {
+                                                    System.out.println("Sei gia un utente registrato?");
+                                                    String sceltaUtenteReg = scanner.nextLine();
+                                                    if (sceltaUtenteReg.equals("y")) {
+                                                        System.out.println("Inserisci il tuo ID utente. ");
+                                                        int idUtente = scanner.nextInt();
+                                                        Utente utenteCercato = udao.findById(idUtente);
+                                                        System.out.println("Benvenuto " + utenteCercato.getNome() + " " + utenteCercato.getCognome() + " .");
+
+
+                                                    } else if (sceltaUtenteReg.equals("n")) {
+                                                        System.out.println(" ");
+                                                        System.out.println("Registrati ora!");
+                                                        System.out.println("Inserisci il tuo nome: ");
+                                                        String nomeUtente = scanner.nextLine();
+                                                        System.out.println(" ");
+                                                        System.out.println("Inserisci il tuo cognome: ");
+                                                        System.out.println(" ");
+                                                        String cognomeUtente = scanner.nextLine();
+                                                        System.out.println(" ");
+                                                        System.out.println("Inserisci la tua data di nascita: (formato: dd/MM/yyyy)");
+                                                        System.out.println(" ");
+                                                        String stringaNascita = scanner.nextLine();
+                                                        LocalDate dataNascita = LocalDate.parse(stringaNascita);
+                                                        int eta = (LocalDate.now().getYear()) - (dataNascita.getYear());
+
+                                                        TipologiaUtente tipologiaUtente = TipologiaUtente.DEFAULT;
+
+                                                        if (eta < 25 && eta > 18) {
+                                                            tipologiaUtente = TipologiaUtente.UNDER25;
+                                                        } else if (eta < 18) {
+                                                            tipologiaUtente = TipologiaUtente.UNDER18;
+                                                        } else if (eta > 25 && eta < 35) {
+                                                            tipologiaUtente = TipologiaUtente.YOUNG;
+                                                        } else if (eta > 35 && eta < 60) {
+                                                            tipologiaUtente = TipologiaUtente.SENIOR;
+                                                        } else if (eta > 60) {
+                                                            tipologiaUtente = TipologiaUtente.OVER60;
+                                                        }
+
+                                                        Utente utente = new Utente(nomeUtente, cognomeUtente, tipologiaUtente, dataNascita);
+                                                        udao.addUtente(utente);
+                                                        System.out.println(" ");
+                                                        System.out.println("Creiamo ora una tessera per te!");
+                                                        LocalDate dataRilascioTessera = LocalDate.now();
+                                                        LocalDate dataScadenzaTessera = LocalDate.now().plusYears(1);
+                                                        Tessera nuovaTessera = new Tessera(utente, dataRilascioTessera, dataScadenzaTessera, true);
+                                                        tdao.addTessera(nuovaTessera);
+                                                        System.out.println(" ");
+                                                        System.out.println("Che cosa vuoi fare?");
+                                                        System.out.println(" ");
+                                                        System.out.println("1) Acquista abbonamento.");
+                                                        System.out.println("2) Controlla profilo utente.");
+                                                        System.out.println("3) Torna al menu principale.");
+                                                        int scelta3 = scanner.nextInt();
+                                                        switch (scelta3){
+                                                            case 1:
+                                                                System.out.println(" ");
+                                                                System.out.println("Che tipo di abbonamento vuoi acquistare?");
+                                                                System.out.println(" ");
+                                                                System.out.println("1) Settimanale");
+                                                                System.out.println("2) Mensile");
+                                                                int sceltaDurataAbb = scanner.nextInt();
+                                                                if(sceltaDurataAbb == 1) {
+                                                                    System.out.println(" ");
+                                                                    System.out.println("Hai scelto l'abbonamento settimanale.");
+                                                                    System.out.println(" ");
+                                                                    System.out.println("Per quale tratta vuoi acquistarlo?");
+
+                                                                    List<Tratta> listaTratteAbbonamento = trdao.findAll();
+
+                                                                    int sceltaTrattaAbbonamento = scanner.nextInt();
+                                                                    scanner.nextLine();
+
+                                                                    Tratta trattaSelezionataAbbonamento = null;
+                                                                    if (sceltaTrattaAbbonamento >= 1 && sceltaTrattaAbbonamento <= listaTratteAbbonamento.size()) {
+                                                                        System.out.println("Hai selezionato la tratta numero " + sceltaTrattaAbbonamento);
+                                                                        System.out.println(" ");
+                                                                        trattaSelezionataAbbonamento = listaTratteAbbonamento.get(sceltaTrattaAbbonamento - 1);
+                                                                        System.out.println("Il prezzo dell'abbonamento per questa tratta è " + trattaSelezionataAbbonamento.getPrezzo());
+                                                                        System.out.println(" ");
+                                                                        System.out.println("Vuoi acquistarlo? (y/n)");
+                                                                        System.out.println(" ");
+                                                                        String sceltaAcquisto = scanner.nextLine();
+                                                                        if (sceltaAcquisto.equals("y")) {
+                                                                            LocalDate dataEmissioneAbbonamento = LocalDate.now();
+                                                                            LocalDate dateScadenzaAbbonamento = dataEmissioneAbbonamento.plusDays(7);
+                                                                            TipologiaAbbonamento tipoAbb = TipologiaAbbonamento.SETTIMANALE;
+                                                                            Abbonamento abbonamento = new Abbonamento(puntoVenditaselezionato, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    System.out.println(" ");
+                                                                    System.out.println("Hai scelto l'abbonamento mensile.");
+                                                                    System.out.println(" ");
+                                                                    System.out.println("Per quale tratta vuoi acquistarlo?");
+
+                                                                    List<Tratta> listaTratteAbbonamento = trdao.findAll();
+
+                                                                    int sceltaTrattaAbbonamento = scanner.nextInt();
+                                                                    scanner.nextLine();
+
+                                                                    Tratta trattaSelezionataAbbonamento = null;
+                                                                    if (sceltaTrattaAbbonamento >= 1 && sceltaTrattaAbbonamento <= listaTratteAbbonamento.size()) {
+                                                                        System.out.println("Hai selezionato la tratta numero " + sceltaTrattaAbbonamento);
+                                                                        System.out.println(" ");
+                                                                        trattaSelezionataAbbonamento = listaTratteAbbonamento.get(sceltaTrattaAbbonamento - 1);
+                                                                        System.out.println("Il prezzo dell'abbonamento per questa tratta è " + trattaSelezionataAbbonamento.getPrezzo());
+                                                                        System.out.println(" ");
+                                                                        System.out.println("Vuoi acquistarlo? (y/n)");
+                                                                        System.out.println(" ");
+                                                                        String sceltaAcquisto = scanner.nextLine();
+                                                                        if (sceltaAcquisto.equals("y")) {
+                                                                            LocalDate dataEmissioneAbbonamento = LocalDate.now();
+                                                                            LocalDate dateScadenzaAbbonamento = dataEmissioneAbbonamento.plusDays(30);
+                                                                            TipologiaAbbonamento tipoAbb = TipologiaAbbonamento.MENSILE;
+                                                                            Abbonamento abbonamento = new Abbonamento(puntoVenditaselezionato, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
+                                                                            adao.addAbbonamento(abbonamento);
+                                                                        }
+                                                                    }
+                                                                }
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        System.out.println("Inserisci una scelta valida.");
+                                                    }
+                                                } else if (sceltaCreaTessera.equals("n")){
+                                                   statoSelezioneMenu = true;
+                                                } else {
+                                                    System.out.println("Inserisci una scelta valida.");
+                                                }
+                                            } else {
+                                                System.out.println("Inserisci una scelta valida.");
+                                            }
+                                            break;
+
+                                        case 3:
+                                            statoSelezioneMenu = true;
+                                            break;
+                                    }
                                 }
                             } else {
                                 System.out.println("Scelta non valida.");
                             }
-                            break;
 
-                        case 2:
-                            menuAmministratore(scanner, em);
-                            break;
-
-                        default:
-                            System.out.println("Operazione non valida.");
-                    }
 
                     break;
+
+                    case 2:
+                        menuAmministratore(scanner, em);
+                        break;
+
+                    default:
+                        System.out.println("Operazione non valida.");
                 }
+
+                }
+
+                break;
+
             } catch (Exception e) {
                 System.out.println("Errore: " + e.getMessage());
-                scanner.nextLine(); // Pulisce il buffer dello scanner
+                scanner.nextLine();
             } finally {
-                // Chiudi le risorse qui
                 if (em != null && em.isOpen()) {
                     em.close();
                 }
                 if (emf != null && emf.isOpen()) {
                     emf.close();
                 }
-                scanner.close(); // Chiudi lo scanner
+                scanner.close();
                 System.out.println("Risorse chiuse correttamente.");
             }
         }
@@ -216,16 +372,16 @@ public class Application {
                     break;
                 case 2:
                     MenuMezzi.gestisciMenuMezzi(scanner, em);
-                    break; // Aggiunta della parentesi mancante
+                    break;
                 case 3:
                     MenuUtenti.gestisciMenuUtenti(scanner, em);
-                    break; // Aggiunta della parentesi mancante
+                    break;
                 case 4:
                     MenuBiglietti.gestisciMenuBuglietti(scanner, em);
-                    break; // Aggiunta della parentesi mancante
+                    break;
                 case 5:
                     MenuAbbonamento.gestisciMenuAbbonamenti(scanner, em);
-                    break; // Aggiunta della parentesi mancante
+                    break;
                 case 0:
                     return;
                 default:
