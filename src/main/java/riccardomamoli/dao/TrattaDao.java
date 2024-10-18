@@ -37,7 +37,6 @@ public class TrattaDao {
         return trattaTrovata;
     }
 
-
     public List<Tratta> findAll() {
 
         TypedQuery<Tratta> query = em.createQuery("SELECT tr FROM Tratta tr", Tratta.class);
@@ -48,7 +47,7 @@ public class TrattaDao {
         } else {
 
             for (int i = 0; i < risultati.size(); i++) {
-               Tratta tr= risultati.get(i);
+               Tratta tr = risultati.get(i);
                 System.out.println(" ");
                 System.out.println("Tratta numero " + (i + 1) + ":");
                 System.out.println("ID: " + tr.getId_tratta());

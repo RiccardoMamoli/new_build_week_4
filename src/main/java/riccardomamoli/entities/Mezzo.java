@@ -34,6 +34,7 @@ public abstract class Mezzo {
     public Mezzo(int capienza, StatoMezzo statoAttuale) {
         this.capienza = capienza;
         this.statoAttuale = statoAttuale;
+
     }
 
     public Long getId_Mezzo() {

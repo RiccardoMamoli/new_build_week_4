@@ -86,9 +86,9 @@ public class MezzoDao {
     }
 
     // Calcola il tempo effettivo delle tratte
-    public List<Double> getTempiEffettivi(Long idMezzo, Long idTratta) {
+    public List<Integer> getTempiEffettivi(Long idMezzo, Long idTratta) {
         String jpql = "SELECT t.orarioEffettivo FROM TrattaPercorsa t WHERE t.mezzo.id = :idMezzo AND t.tratta.id = :idTratta";
-        TypedQuery<Double> query = em.createQuery(jpql, Double.class);
+        TypedQuery<Integer> query = em.createQuery(jpql, Integer.class);
         query.setParameter("idMezzo", idMezzo);
         query.setParameter("idTratta", idTratta);
         return query.getResultList();

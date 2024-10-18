@@ -16,6 +16,7 @@ public class Autobus extends Mezzo {
 
     @Override
     public String toString() {
-        return "Autobus{}";
+        return "Autobus{" + super.toString() + "}";
+
     }
 }
