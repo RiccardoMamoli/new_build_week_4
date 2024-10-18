@@ -20,7 +20,7 @@ public class TrattaDao {
         tx.begin();
         em.persist(tratta);
         tx.commit();
-        System.out.println("La tratta " + tratta.getId_tratta() + " con partenza da " + tratta.getZonaPartenza() + " e capolinea " + tratta.getCapolinea() + " è stata creata");
+        System.out.println("La tratta " + tratta.getId_tratta() + " con partenza da " + tratta.getZonaPartenza() + " e capolinea " + tratta.getCapolinea() + "è stata creata");
     }
 
     public void removeTratta(Tratta tratta) {

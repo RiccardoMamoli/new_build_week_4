@@ -34,7 +34,7 @@ public class Biglietto {
     private LocalDate data_emissione;
 
     @Column(name = "timbrato")
-    private boolean timbrato;
+    private boolean timbrato = false;
 
 
     public Biglietto() {

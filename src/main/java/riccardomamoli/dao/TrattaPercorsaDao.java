@@ -96,7 +96,7 @@ public class TrattaPercorsaDao {
         }
     }
 
-    public void printFascePerTratta(Tratta trattaSelezionata) {
+     public List<TrattaPercorsa> printFascePerTratta(Tratta trattaSelezionata) {
         long trattaId = trattaSelezionata.getId_tratta();
         TypedQuery<TrattaPercorsa> query = em.createQuery("SELECT tp FROM TrattaPercorsa tp WHERE tp.tratta.id = :trattaId", TrattaPercorsa.class);
         query.setParameter("trattaId", trattaId);
@@ -115,7 +115,8 @@ public class TrattaPercorsaDao {
         } else {
             System.out.println("Nessuna fascia oraria associata alla tratta con ID " + trattaId);
         }
-    }
+         return fasceOrarie;
+     }
 
 
 
