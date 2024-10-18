@@ -20,7 +20,7 @@ public class MenuBiglietti {
             System.out.println("Menu Biglietti:\n" +
                     "1: Elimina\n" +
                     "2: Visualizzare tutti i biglietti venduti da un distributore\n" +
-                    "3: Visualizza dettagli di uno specifico biglietto"+
+                    "3: Visualizza dettagli di uno specifico biglietto\n"+
                     "0: Torna indietro");
             int scelta = scanner.nextInt();
             scanner.nextLine();
