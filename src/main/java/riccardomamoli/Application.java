@@ -76,7 +76,6 @@ public class Application {
 
         Tratta tratta1 = trdao.findById(11);
         Tratta tratta2 = trdao.findById(12);
-
 //        TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
 //        TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
 //        TrattaPercorsa FasciaOraria3 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
