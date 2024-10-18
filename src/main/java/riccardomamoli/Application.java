@@ -197,8 +197,8 @@ public class Application {
                 }
                 if (emf != null && emf.isOpen()) {
                     emf.close();
-                }
-
+                }scanner.close();
+                System.out.println("Risorse chiuse correttamente.");
             }
         }
     }

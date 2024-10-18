@@ -76,6 +76,14 @@ public class Utente {
         this.data_di_nascita = data_di_nascita;
     }
 
+    public List<Tessera> getTessere() {
+        return tessere;
+    }
+
+    public void setTessere(List<Tessera> tessere) {
+        this.tessere = tessere;
+    }
+
     @Override
     public String toString() {
         return "Utente{" +
