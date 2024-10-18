@@ -1,4 +1,4 @@
-package riccardomamoli.dao;
+package riccardomamoli.menu;
 
 
 import jakarta.persistence.EntityManager;
