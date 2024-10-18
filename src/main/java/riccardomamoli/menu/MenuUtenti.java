@@ -12,7 +12,8 @@ public class MenuUtenti {
         UtenteDao udao = new UtenteDao(em);
 
         while (true) {
-            System.out.println("Menu Utenti:\n1: Visualizza tutti gli utenti\n2: Elimina\n3: Ricerca Utente\n0: Torna indietro");            int scelta = scanner.nextInt();
+            System.out.println("Menu Utenti:\n1: Visualizza tutti gli utenti\n2: Elimina\n3: Ricerca Utente\n0: Torna indietro");
+            int scelta = scanner.nextInt();
             scanner.nextLine();
 
             switch (scelta) {
@@ -73,6 +74,15 @@ public class MenuUtenti {
                                 System.out.println("Utente trovato:");
                                 System.out.println("Nome: " + utenteTrovato.getNome());
                                 System.out.println("Cognome: " + utenteTrovato.getCognome());
+
+                                // Display additional information
+                                if (utenteTrovato.getTessere() != null) {
+                                    System.out.println("Tessera: " + utenteTrovato.getTessere());
+                                } else {
+                                    System.out.println("Nessuna tessera associata.");
+                                }
+
+
                             } else {
                                 System.out.println("Nessun utente trovato con ID: " + idUtentee);
                             }

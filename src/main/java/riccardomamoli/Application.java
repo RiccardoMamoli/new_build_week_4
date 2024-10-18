@@ -75,13 +75,13 @@ public class Application {
 
 //         Mezzo mezzoid1 = mdao.ricercoMezzo(1);
 //         Mezzo mezzoid2 = mdao.ricercoMezzo(2);
-//
-//        Tratta tratta1 = trdao.findById(11);
-//        Tratta tratta2 = trdao.findById(12);
+////
+//        Tratta tratta1 = trdao.findById(1);
+//        Tratta tratta2 = trdao.findById(3);
 //        TrattaPercorsa FasciaOraria1 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
 //        TrattaPercorsa FasciaOraria2 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
 //        TrattaPercorsa FasciaOraria3 = new TrattaPercorsa(tratta1, mezzoid1, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
-//
+////
 //        TrattaPercorsa FasciaOraria4 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(9, 0), LocalTime.of(10, 0), 70);
 //        TrattaPercorsa FasciaOraria5 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(11, 0), LocalTime.of(12, 0), 60);
 //        TrattaPercorsa FasciaOraria6 = new TrattaPercorsa(tratta2, mezzoid2, LocalTime.of(13, 0), LocalTime.of(14, 0), 60);
@@ -126,14 +126,14 @@ public class Application {
 
 
 
-
-       // tpdao.addTrattaPercorsa(FasciaOraria1);
-       // tpdao.addTrattaPercorsa(FasciaOraria2);
-       //  tpdao.addTrattaPercorsa(FasciaOraria3);
-       //  tpdao.addTrattaPercorsa(FasciaOraria4);
-        // tpdao.addTrattaPercorsa(FasciaOraria5);
-       //  tpdao.addTrattaPercorsa(FasciaOraria6);
-
+//
+//        tpdao.addTrattaPercorsa(FasciaOraria1);
+//        tpdao.addTrattaPercorsa(FasciaOraria2);
+//         tpdao.addTrattaPercorsa(FasciaOraria3);
+//         tpdao.addTrattaPercorsa(FasciaOraria4);
+//         tpdao.addTrattaPercorsa(FasciaOraria5);
+//         tpdao.addTrattaPercorsa(FasciaOraria6);
+//
 
 
 
@@ -219,6 +219,7 @@ public class Application {
                                                 TrattaPercorsa trattaPercorsa = fasceDisponibili.get(sceltaFascia - 1);
                                                 biglietto1.setTimbrato(true);
                                                 System.out.println("Hai selezionato la fascia oraria " + trattaPercorsa.getOrarioPartenza() + "-" + trattaPercorsa.getOrarioArrivo() + ". Il tuo biglietto è stato timbrato!");
+                                                statoSelezioneMenu = true;
                                             }
                                             break;
 
@@ -258,6 +259,7 @@ public class Application {
 
                                                         if (sceltaStampaUtente == 1) {
                                                             udao.printById(idUtente);
+                                                            statoSelezioneMenu = true;
                                                         } else if (sceltaStampaUtente == 2) {
                                                             Utente utente = udao.findById(idUtente);
 
@@ -318,6 +320,7 @@ public class Application {
                                                                                         TipologiaAbbonamento tipoAbb = TipologiaAbbonamento.SETTIMANALE;
                                                                                         abbonamento = new Abbonamento(puntoVenditaselezionato, nuovaTessera, dataEmissioneAbbonamento, dateScadenzaAbbonamento, tipoAbb);
                                                                                         adao.addAbbonamento(abbonamento);
+                                                                                        menuUtenteAbbonamento = true;
                                                                                     } else {
                                                                                         menuUtenteAbbonamento = true;
                                                                                     }
@@ -546,6 +549,7 @@ public class Application {
 
                                                                     if (sceltaStampaUtente == 1) {
                                                                         udao.printByUser(utente, nuovaTessera);
+                                                                        statoSelezioneMenu = true;
                                                                     } else if(sceltaStampaUtente == 2) {
                                                                         udao.trovaStoricoAbbonamenti(nuovaTessera);
                                                                     } else if (sceltaStampaUtente == 3) {
